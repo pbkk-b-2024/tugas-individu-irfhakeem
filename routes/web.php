@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pertemuan1Controller;
 
+// Basic Routing
 Route::get('/', function () {
     return view('layout.base');
 });
 
+// Group Routing
 Route::prefix('/pertemuan1')->group(function () {
     // Static routing
     Route::match(['get', 'post'], '/genap-ganjil', [Pertemuan1Controller::class, 'genapGanjil'])->name('genap-ganjil');
@@ -17,4 +19,8 @@ Route::prefix('/pertemuan1')->group(function () {
     // Dynamic routing
     Route::get('/param/{param1}', [Pertemuan1Controller::class, 'param1'])->name('param1');
     Route::get('/param/{param1}/{param2}', [Pertemuan1Controller::class, 'param2'])->name('param2');
+});
+
+Route::fallback(function () {
+    return view('error.not-found');
 });

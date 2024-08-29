@@ -14,7 +14,7 @@
             <form action="#" method="POST">
                 @csrf
                 <label for="n">Enter a number (n):</label>
-                <input type="text" name="n" id="n" min="1" required>
+                <input type="text" name="n" id="n" min="1" class="border-[1px] border-black" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -27,7 +27,8 @@
         <div class="card-body">
             <form action="#" method="GET">
                 <label for="n">Enter a number (n):</label>
-                <input type="text" name="n" id="n" min="1" required>
+                <input type="text" name="n" id="n" min="1" class="border-[1px] border-black"
+                    required>
                 <button type="submit">Submit</button>
             </form>
         </div>
