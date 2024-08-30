@@ -17,7 +17,7 @@ class Pertemuan1Controller extends Controller
             ]);
 
             $n = $validatedData['n'];
-            $numberDetails = Number::getGenapGanjil($n); //
+            $numberDetails = Number::getGenapGanjil($n);
         }
         return view('pertemuan1.genap-ganjil', compact('numberDetails'));
     }
@@ -62,5 +62,11 @@ class Pertemuan1Controller extends Controller
         $data['param1'] = $param1;
         $data['param2'] = $param2;
         return view('pertemuan1.param2', compact('data'));
+    }
+
+    public function namedParam($namedParam = '')
+    {
+        $data['namedParam'] = $namedParam;
+        return view('namedParam', compact('data'));
     }
 }

@@ -12,7 +12,7 @@
 
     @if (count($numberDetails) > 0)
         <h2>Hasil</h2>
-        <table border="1">
+        <table>
             <thead>
                 <tr>
                     <th>Nomor Urut</th>
@@ -22,8 +22,8 @@
             <tbody>
                 @foreach ($numberDetails as $detail)
                     <tr>
-                        <td>{{ $detail['number'] }}</td>
-                        <td>{{ $detail['result'] }}</td>
+                        <td class="border-[1px] border-black">{{ $detail['number'] }}</td>
+                        <td class="border-[1px] border-black">{{ $detail['result'] }}</td>
                     </tr>
                 @endforeach
             </tbody>

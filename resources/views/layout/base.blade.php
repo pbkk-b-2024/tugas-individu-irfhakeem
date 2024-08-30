@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>PBKK 2024 Irfan</title>
 </head>
 
@@ -33,9 +32,9 @@
                     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
                     <ul class="flex flex-col" data-widget="treeview" role="menu" data-accordion="false">
-                        <li x-data="{ open: false }" class="nav-item">
+                        <li x-data="{ open: false }">
                             <a href="#" @click="open = !open"
-                                class="flex items-center p-2 text-white hover:bg-gray-200 cursor-pointer">
+                                class="flex items-center p-2 text-white hover:bg-[#222] cursor-pointer">
                                 <i class="fas fa-tachometer-alt mr-2"></i>
                                 <p class="text-lg font-medium flex-1">
                                     Pertemuan 1
@@ -44,31 +43,77 @@
                                     :class="{ 'rotate-90': open }"></i>
                             </a>
 
-                            <ul x-show="open" x-collapse class="pl-6 mt-2 space-y-1">
-                                <li class="nav-item">
+                            <ul x-show="open" x-collapse class="mt-2 space-y-1">
+                                <li>
                                     <a href="{{ route('param') }}"
-                                        class="flex items-center p-2 text-white hover:bg-gray-200 rounded">
+                                        class="flex items-center p-2 text-white hover:bg-[#222] rounded">
                                         <i class="far fa-circle nav-icon mr-2"></i>
                                         <p>Routing Parameter</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li>
+                                    <a href="{{ route('basic') }}"
+                                        class="flex items-center p-2 text-white hover:bg-[#222] rounded">
+                                        <i class="far fa-circle nav-icon mr-2"></i>
+                                        <p>Basic Routing</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('fallback') }}"
+                                        class="flex items-center p-2 text-white hover:bg-[#222] rounded">
+                                        <i class="far fa-circle nav-icon mr-2"></i>
+                                        <p>Fallback Routing</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('different-named') }}"
+                                        class="flex items-center p-2 text-white hover:bg-[#222] rounded">
+                                        <i class="far fa-circle nav-icon mr-2"></i>
+                                        <p>Named Routing</p>
+                                    </a>
+                                </li>
+
+                                <ul class="flex flex-col" data-widget="treeview" role="menu" data-accordion="false">
+                                    <li x-data="{ open: false }">
+                                        <a href="#" @click="open = !open"
+                                            class="flex items-center p-2 text-white hover:bg-[#222] cursor-pointer">
+                                            <i class="fas fa-tachometer-alt mr-2"></i>
+                                            <p class="text-lg font-medium flex-1">
+                                                Group Routing
+                                            </p>
+                                            <i class="fas fa-angle-left transition-transform duration-200"
+                                                :class="{ 'rotate-90': open }"></i>
+                                        </a>
+
+                                        <ul x-show="open" x-collapse class="mt-2 space-y-1">
+                                            <li>
+                                                <a href="{{ route('group-page') }}"
+                                                    class="flex items-center p-2 text-white hover:bg-[#222] rounded">
+                                                    <i class="far fa-circle nav-icon mr-2"></i>
+                                                    <p>Page Group</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <li>
                                     <a href="{{ route('genap-ganjil') }}"
-                                        class="flex items-center p-2 text-white hover:bg-gray-200 rounded">
+                                        class="flex items-center p-2 text-white hover:bg-[#222] rounded">
                                         <i class="far fa-circle nav-icon mr-2"></i>
                                         <p>Genap Ganjil</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li>
                                     <a href="{{ route('fibonacci') }}"
-                                        class="flex items-center p-2 text-white hover:bg-gray-200 rounded">
+                                        class="flex items-center p-2 text-white hover:bg-[#222] rounded">
                                         <i class="far fa-circle nav-icon mr-2"></i>
                                         <p>Fibonacci</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li>
                                     <a href="{{ route('bilangan-prima') }}"
-                                        class="flex items-center p-2 text-white hover:bg-gray-200 rounded">
+                                        class="flex items-center p-2 text-white hover:bg-[#222] rounded">
                                         <i class="far fa-circle nav-icon mr-2"></i>
                                         <p>Bilangan Prima</p>
                                     </a>
@@ -91,6 +136,8 @@
     <footer>
         @include('components.footer')
     </footer>
+
+    @yield('script')
 </body>
 
 </html>

@@ -12,8 +12,8 @@
             <form id="form1" method="GET" action="">
                 <div class="form-group">
                     <label for="param1">Parameter 1:</label>
-                    <input class="border-[1px] border-black" type="text" class="form-control" id="param1"
-                        name="param1" placeholder="Enter parameter 1" required>
+                    <input class="border-[1px] border-black form-control" type="text" id="param1" name="param1"
+                        placeholder="Enter parameter 1" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -30,13 +30,13 @@
             <form id="form2" method="GET" action="">
                 <div class="form-group">
                     <label for="param1-2">Parameter 1:</label>
-                    <input class="border-[1px] border-black" type="text" class="form-control" id="param1-2"
-                        name="param1" placeholder="Enter parameter 1" required>
+                    <input class="border-[1px] border-black form-control" type="text" id="param1-2" name="param1"
+                        placeholder="Enter parameter 1" required>
                 </div>
                 <div class="form-group">
-                    <label for="param2">Parameter 2:</label>
-                    <input class="border-[1px] border-black" type="text" class="form-control" id="param2-2"
-                        name="param2" placeholder="Enter parameter 2" required>
+                    <label for="param2-2">Parameter 2:</label>
+                    <input class="border-[1px] border-black form-control" type="text" id="param2-2" name="param2"
+                        placeholder="Enter parameter 2" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -45,22 +45,6 @@
 @endsection
 
 @section('script')
-    {{-- <script>
-    document.getElementById('form1').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const param1 = document.getElementById('param1').value;
-        const url = `{{ url('/pertemuan1/param') }}/${param1}`;
-        window.location.href = url;
-    });
-
-    document.getElementById('form2').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const param1 = document.getElementById('param1-2').value;
-        const param2 = document.getElementById('param2-2').value;
-        const url = `{{ url('/pertemuan1/param') }}/${param1}/${param2}`;
-        window.location.href = url;
-    });
-</script> --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form1 = document.getElementById('form1');

@@ -48,6 +48,17 @@ class Number extends Model
         }
         return $details;
     }
+
+    public static function storeNumbers($n)
+    {
+        $details = [];
+
+        $details[] = [
+            'number' => $n,
+        ];
+
+        return $details;
+    }
 }
 
 function fibonacciRekursif($n)
