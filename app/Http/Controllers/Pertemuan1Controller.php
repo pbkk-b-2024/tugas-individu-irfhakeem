@@ -67,6 +67,6 @@ class Pertemuan1Controller extends Controller
     public function namedParam($namedParam = '')
     {
         $data['namedParam'] = $namedParam;
-        return view('namedParam', compact('data'));
+        return view('pertemuan1.namedParam', compact('data'));
     }
 }

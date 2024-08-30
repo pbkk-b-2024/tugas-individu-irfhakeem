@@ -38,15 +38,13 @@ Route::prefix('/pertemuan1')->group(function () {
             return view('pertemuan1.testing-group.group-page');
         })->name('group-page');
     });
-});
-Route::get('/named', function () {
-    return view('named');
-})->name('different-named');
 
-Route::get('/named/{namedParam}', [Pertemuan1Controller::class, 'namedParam'])->name('namedParam');
+    // Named routing
+    Route::get('/named', function () {
+        return view('pertemuan1.named');
+    })->name('different-named');
 
-Route::get('/basic', function () {
-    return view('pertemuan1.basic');
+    Route::get('/named/{namedParam}', [Pertemuan1Controller::class, 'namedParam'])->name('namedParam');
 });
 
 // Fallback routing

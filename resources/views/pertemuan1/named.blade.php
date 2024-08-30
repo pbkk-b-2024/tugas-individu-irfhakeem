@@ -28,14 +28,14 @@
 
             function updatePreview1() {
                 const param1 = encodeURIComponent(param1Input.value);
-                const previewUrl1 = `{{ url('/named') }}/${param1}`;
+                const previewUrl1 = `{{ url('pertemuan1/named') }}/${param1}`;
                 preview1Span.textContent = previewUrl1;
             }
 
             form1.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const param1 = encodeURIComponent(param1Input.value);
-                const url = `{{ url('/named') }}/${param1}`;
+                const url = `{{ url('pertemuan1/named') }}/${param1}`;
                 window.location.href = url;
             });
 

@@ -12,7 +12,7 @@
             <div> Parameter : {{ $data['namedParam'] }}</div>
         </div>
         <div class="card-footer">
-            <a href="{{ url('/named') }}">
+            <a href="{{ url('pertemuan1/named') }}">
                 <button class="btn btn-primary">Kembali</button>
             </a>
         </div>

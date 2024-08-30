@@ -97,6 +97,8 @@
                                     </li>
                                 </ul>
 
+                                <br>
+
                                 <li>
                                     <a href="{{ route('genap-ganjil') }}"
                                         class="flex items-center p-2 text-white hover:bg-[#222] rounded">
