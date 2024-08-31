@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'Routing Parameter')
+@section('title', 'Page Group')
 
 @section('content')
     <div class="flex flex-col gap-3">
