@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pertemuan1Controller;
 
 // Basic Routing
-Route::get('/', function () {
-    return view('layout.base');
+Route::get('/page-pertemuan-1', function () {
+    return view('page-pertemuan-1.layout.base');
 });
 
 // Group Routing
@@ -50,4 +50,15 @@ Route::prefix('/pertemuan1')->group(function () {
 // Fallback routing
 Route::fallback(function () {
     return response()->view('fallback', ['message' => 'Halaman yang Anda cari tidak ditemukan.'], 404);
+});
+
+Route::redirect('/', '/page-pertemuan-2', 301);
+
+// Pertemuan 2
+Route::get('/page-pertemuan-2', function () {
+    return view('page-pertemuan-2.layout.base');
+});
+
+Route::prefix('/sections')->group(function () {
+    Route::get('/dashboard', fn() => view('page-pertemuan-2.sections.dashboard'))->name('dashboard');
 });
