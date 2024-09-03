@@ -52,13 +52,12 @@ Route::fallback(function () {
     return response()->view('fallback', ['message' => 'Halaman yang Anda cari tidak ditemukan.'], 404);
 });
 
-Route::redirect('/', '/page-pertemuan-2', 301);
+Route::redirect('/', '/page-pertemuan-2/sections/dashboard', 301);
 
 // Pertemuan 2
-Route::get('/page-pertemuan-2', function () {
-    return view('page-pertemuan-2.layout.base');
-});
-
-Route::prefix('/sections')->group(function () {
-    Route::get('/dashboard', fn() => view('page-pertemuan-2.sections.dashboard'))->name('dashboard');
+Route::prefix('/page-pertemuan-2')->group(function () {
+    Route::prefix('/sections')->group(function () {
+        Route::get('/dashboard', fn() => view('page-pertemuan-2.sections.dashboard'))->name('dashboard');
+        Route::get('/pasien', fn() => view('page-pertemuan-2.sections.pasien'))->name('pasien');
+    });
 });
