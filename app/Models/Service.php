@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Specialization extends Model
+class Service extends Model
 {
     use HasFactory;
-    protected $table = 'specializations';
-    protected $primaryKey = 'spesialis_id';
+    protected $table = 'services';
+    protected $primaryKey = 'service_id';
     protected $fillable = [
-        'spesialisasi',
+        'nama',
     ];
 }

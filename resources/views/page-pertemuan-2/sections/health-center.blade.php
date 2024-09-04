@@ -1,6 +1,6 @@
 @extends('page-pertemuan-2.layout.base')
 
-@section('title', 'CRUD Patients')
+@section('title', 'CRUD Health Centers')
 
 @section('content')
     <div class="flex justify-end items-center mb-5">
@@ -23,11 +23,11 @@
                 </tr>
             </thead>
             <tbody id="myTable">
-                @foreach ($patients as $patient)
+                @foreach ($healthCenters as $healthCenter)
                     <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
                         @foreach ($columns as $column)
                             <td class="px-4 py-2 whitespace-nowrap">
-                                {{ $patient->$column }}
+                                {{ $healthCenter->$column }}
                             </td>
                         @endforeach
                         <td class="flex gap-3 px-4 py-2">

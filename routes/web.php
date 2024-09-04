@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Pertemuan1Controller;
 
@@ -58,6 +59,11 @@ Route::redirect('/', '/page-pertemuan-2/sections/dashboard', 301);
 Route::prefix('/page-pertemuan-2')->group(function () {
     Route::prefix('/sections')->group(function () {
         Route::get('/dashboard', fn() => view('page-pertemuan-2.sections.dashboard'))->name('dashboard');
-        Route::get('/pasien', fn() => view('page-pertemuan-2.sections.pasien'))->name('pasien');
+        Route::get('/pasien', [ApiController::class, 'getPatient'])->name('pasien');
+        Route::get('/doctor', [ApiController::class, 'getDoctor'])->name('doctor');
+        Route::get('/health-center', [ApiController::class, 'getHealthCenter'])->name('healthCenter');
+        Route::get('/drug', [ApiController::class, 'getDrug'])->name('drug');
+        Route::get('/specialization', [ApiController::class, 'getSpecialization'])->name('specialization');
+        Route::get('/service', [ApiController::class, 'getService'])->name('service');
     });
 });

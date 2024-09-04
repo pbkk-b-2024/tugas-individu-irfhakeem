@@ -15,21 +15,21 @@
     <style>
         /* Custom Scrollbar Styles */
         ::-webkit-scrollbar {
-            padding: 4px 0;
             width: 8px;
         }
 
         ::-webkit-scrollbar-track {
+            border-radius: 4px;
             background: #f1f1f1;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #888;
+            background: #229799;
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #22979930;
+            background: #22979970;
         }
 
         /* Apply custom scrollbar to specific elements */
@@ -53,9 +53,9 @@
 <body>
     <div class="bg-white grid grid-cols-10 text-white h-screen">
         @include('page-pertemuan-2.components.sidebar')
-        <div class="col-span-8 flex flex-col text-black gap-10 h-screen overflow-hidden">
+        <div class="col-span-8 flex flex-col text-black h-screen overflow-hidden">
             @include('page-pertemuan-2.components.navbar')
-            <div class="px-10 flex-1 overflow-auto custom-scrollbar">
+            <div class="px-10 flex-1 overflow-auto">
                 @yield('content')
             </div>
             @include('page-pertemuan-2.components.footer')

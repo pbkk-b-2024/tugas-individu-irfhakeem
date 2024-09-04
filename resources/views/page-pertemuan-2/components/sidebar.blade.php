@@ -1,13 +1,13 @@
 <html>
-<div class="col-span-2 bg-white border-r-2 border-[#f3f3f3] shadow-xl h-screen overflow-y-auto">
+<div class="col-span-2 bg-white border-r-2 border-[#f3f3f3] shadow-xl h-screen">
     <div class="flex flex-col gap-10 items-center justify-center my-10">
         {{-- Logo --}}
         <div>
             <img src="" alt="">
-            <p>Wise</p>
+            <p class="text-2xl font-bold text-[#229799]">MED<span class="font-medium text-gray-400">Plus</span></p>
         </div>
         {{-- Avatar --}}
-        <div class="flex flex-col gap-3 items-center">
+        <div class="flex flex-col gap-2 items-center">
             <img src="" alt="" class="rounded-full w-10 h-10 object-cover">
             <p class="text-[#1f1f1f] text-sm font-medium">Irfan Hakim</p>
         </div>
@@ -31,7 +31,7 @@
         },
         {
             title: 'Doctors',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('doctor') }}',
             icon: ''
         },
         {
@@ -41,17 +41,17 @@
         },
         {
             title: 'Specialization',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('specialization') }}',
             icon: ''
         },
         {
             title: 'Health Centers',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('healthCenter') }}',
             icon: ''
         },
         {
             title: 'Drugs',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('drug') }}',
             icon: ''
         },
         {
@@ -66,14 +66,9 @@
         },
         {
             title: 'Services',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('service') }}',
             icon: ''
         },
-        {
-            title: 'Health Tips',
-            url: '{{ route('pasien') }}',
-            icon: ''
-        }
     ];
 
     const sidebarLinks = document.getElementById('sidebar-links');
@@ -82,7 +77,7 @@
     links.map(link => {
         const li = document.createElement('li');
         li.innerHTML = `
-            <a href="${link.url}" class="my-3 flex items-center justify-start px-5 py-2 hover:bg-[#22979970] hover:text-white rounded-full cursor-pointer ${link.title === isActive ? 'bg-[#229799] text-white' : 'text-gray-400'}">
+            <a href="${link.url}" class="my-2 flex items-center justify-start px-5 py-2 hover:bg-[#22979970] hover:text-white rounded-full cursor-pointer ${link.title === isActive ? 'bg-[#229799] text-white' : 'text-gray-400'}">
                 <p class="text-md flex-1">${link.title}</p>
             </a>
         `;

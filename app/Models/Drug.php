@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Specialization extends Model
+class Drug extends Model
 {
     use HasFactory;
-    protected $table = 'specializations';
-    protected $primaryKey = 'spesialis_id';
+
+    protected $table = 'drugs';
+    protected $primaryKey = 'drug_id';
     protected $fillable = [
-        'spesialisasi',
+        'nama',
+        'jenis',
+        'satuan',
     ];
 }
