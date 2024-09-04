@@ -1,5 +1,5 @@
 <html>
-<div class="col-span-2 bg-white h-screen border-r-2 border-[#f3f3f3] shadow-xl">
+<div class="col-span-2 bg-white border-r-2 border-[#f3f3f3] shadow-xl h-screen overflow-y-auto">
     <div class="flex flex-col gap-10 items-center justify-center my-10">
         {{-- Logo --}}
         <div>
@@ -45,7 +45,32 @@
             icon: ''
         },
         {
-            title: 'Pasien',
+            title: 'Health Centers',
+            url: '{{ route('pasien') }}',
+            icon: ''
+        },
+        {
+            title: 'Drugs',
+            url: '{{ route('pasien') }}',
+            icon: ''
+        },
+        {
+            title: 'Prescriptions',
+            url: '{{ route('pasien') }}',
+            icon: ''
+        },
+        {
+            title: 'Appointments',
+            url: '{{ route('pasien') }}',
+            icon: ''
+        },
+        {
+            title: 'Services',
+            url: '{{ route('pasien') }}',
+            icon: ''
+        },
+        {
+            title: 'Health Tips',
             url: '{{ route('pasien') }}',
             icon: ''
         }

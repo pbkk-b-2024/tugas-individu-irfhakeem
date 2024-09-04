@@ -12,6 +12,32 @@
         rel="stylesheet">
     <title>PBKK 2024 Irfan</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        /* Custom Scrollbar Styles */
+        ::-webkit-scrollbar {
+            padding: 4px 0;
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22979930;
+        }
+
+        /* Apply custom scrollbar to specific elements */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+        }
+    </style>
     <script>
         $(document).ready(function() {
             $("#searchInput").on("keyup", function() {
@@ -24,13 +50,12 @@
     </script>
 </head>
 
-
 <body>
-    <div class="bg-white grid grid-cols-10 text-white">
+    <div class="bg-white grid grid-cols-10 text-white h-screen">
         @include('page-pertemuan-2.components.sidebar')
-        <div class=" col-span-8 flex flex-col text-black gap-10 h-screen">
+        <div class="col-span-8 flex flex-col text-black gap-10 h-screen overflow-hidden">
             @include('page-pertemuan-2.components.navbar')
-            <div class="px-10">
+            <div class="px-10 flex-1 overflow-auto custom-scrollbar">
                 @yield('content')
             </div>
             @include('page-pertemuan-2.components.footer')

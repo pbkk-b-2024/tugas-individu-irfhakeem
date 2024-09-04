@@ -3,6 +3,11 @@
 @section('title', 'CRUD Patients')
 
 @section('content')
+    <div class="flex justify-end items-center mb-5">
+        <button class="bg-[#229799] px-4 py-[0.4rem] rounded-full items-center text-white">
+            Add New
+        </button>
+    </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
