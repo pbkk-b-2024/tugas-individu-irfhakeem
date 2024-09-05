@@ -35,4 +35,6 @@ class DoctorController extends Controller
 
         return redirect()->route('doctor')->with('error', 'Doctor not found.');
     }
+
+    function add(Request $request) {}
 }

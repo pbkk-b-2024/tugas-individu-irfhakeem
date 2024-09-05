@@ -28,6 +28,8 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         // Patient
         Route::get('/pasien', [PatientController::class, 'get'])->name('pasien');
         Route::delete('/pasien/delete/{id}', [PatientController::class, 'delete'])->name('pasien.delete');
+        Route::post('/pasien/add', [PatientController::class, 'add'])->name('pasien.add');
+
 
         // Doctor
         Route::get('/doctor', [DoctorController::class, 'get'])->name('doctor');
