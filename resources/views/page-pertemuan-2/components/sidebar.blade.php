@@ -36,7 +36,7 @@
         },
         {
             title: 'Medical Reports',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('medicalReport') }}',
             icon: ''
         },
         {
@@ -56,12 +56,12 @@
         },
         {
             title: 'Prescriptions',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('prescription') }}',
             icon: ''
         },
         {
             title: 'Appointments',
-            url: '{{ route('pasien') }}',
+            url: '{{ route('appointment') }}',
             icon: ''
         },
         {

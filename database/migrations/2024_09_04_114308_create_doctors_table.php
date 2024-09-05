@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('no_hp');
             $table->string('jenis_kelamin');
-            $table->foreignId('spesialis_id')->constrained('specializations', 'spesialis_id');
-            $table->foreignId('health_center_id')->constrained('health_centers', 'health_center_id');
+            $table->foreignId('spesialis_id')->constrained('specializations', 'spesialis_id')->onDelete('cascade');
+            $table->foreignId('health_center_id')->constrained('health_centers', 'health_center_id')->onDelete('cascade');
             $table->timestamps();
         });
     }

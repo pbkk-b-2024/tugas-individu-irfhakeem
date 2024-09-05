@@ -23,13 +23,12 @@ class MedicalReportFactory extends Factory
         return [
             //
             'patient_id' => fake()->randomElement(Patient::pluck('patient_id')->toArray()),
-            'doctor_id' => fake()->randomElement(Doctor::pluck('doctor_id')->toArray()),
-            'health_center_id' => fake()->randomElement(HealthCenter::pluck('health_center_id')->toArray()),
-            'service_id' => fake()->randomElement(Service::pluck('service_id')->toArray()),
+            'dokter' => fake()->randomElement(Doctor::pluck('nama')->toArray()),
+            'faskes' => fake()->randomElement(HealthCenter::pluck('nama')->toArray()),
+            'service' => fake()->randomElement(Service::pluck('nama')->toArray()),
             'date' => fake()->date(),
             'status' => fake()->randomElement(['Selesai', 'Belum Selesai']),
             'diagnosis' => fake()->sentence(),
-            'medical_record' => fake()->sentence(),
         ];
     }
 }

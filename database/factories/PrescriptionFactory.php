@@ -21,7 +21,7 @@ class PrescriptionFactory extends Factory
         return [
             //
             'instruksi' => fake()->sentence(),
-            'doctor_id' => fake()->randomElement(Doctor::pluck('doctor_id')->toArray()),
+            'dokter' => fake()->randomElement(Doctor::pluck('nama')->toArray()),
             'patient_id' => fake()->randomElement(Patient::pluck('patient_id')->toArray()),
         ];
     }

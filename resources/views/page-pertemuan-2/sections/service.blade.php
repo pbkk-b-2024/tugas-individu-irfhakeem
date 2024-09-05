@@ -32,7 +32,12 @@
                         @endforeach
                         <td class="flex gap-3 px-4 py-2">
                             <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Delete</a>
+                            <form action="{{ route('service.delete', $service->service_id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this service with ID: {{ $service->service_id }}?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="font-medium text-blue-600 hover:underline">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('medical_reports', function (Blueprint $table) {
             $table->id('medical_report_id');
             $table->foreignId('patient_id')->constrained('patients', 'patient_id')->onDelete('cascade');
-            $table->foreignId('doctor_id')->constrained('doctors', 'doctor_id');
-            $table->foreignId('health_center_id')->constrained('health_centers', 'health_center_id');
-            $table->foreignId('service_id')->constrained('services', 'service_id');
+            $table->string('dokter');
+            $table->string('faskes');
+            $table->string('service');
             $table->date('date')->default(now());
             $table->string('status');
             $table->string('diagnosis');
-            $table->string('medical_record');
             $table->timestamps();
         });
     }

@@ -1,52 +1,17 @@
 <?php
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\DrugController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\HealthCenterController;
+use App\Http\Controllers\MedicalReportController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Pertemuan1Controller;
-
-// Basic Routing
-Route::get('/page-pertemuan-1', function () {
-    return view('page-pertemuan-1.layout.base');
-});
-
-// Group Routing
-Route::prefix('/pertemuan1')->group(function () {
-    // Named routing
-    Route::match(['get', 'post'], '/genap-ganjil', [Pertemuan1Controller::class, 'genapGanjil'])->name('genap-ganjil');
-    Route::get('/fibbonaci', [Pertemuan1Controller::class, 'fibonacci'])->name('fibonacci');
-    Route::get('/prima', [Pertemuan1Controller::class, 'bilanganPrima'])->name('bilangan-prima');
-    Route::get('/param', fn() => view('pertemuan1.param'))->name('param');
-
-    // Dynamic routing
-    Route::get('/param/{param1}', [Pertemuan1Controller::class, 'param1'])->name('param1');
-    Route::get('/param/{param1}/{param2}', [Pertemuan1Controller::class, 'param2'])->name('param2');
-
-    // Redirect routing
-    Route::redirect('/redirect', '/pertemuan1/genap-ganjil', 301);
-
-    // Basic routing
-    Route::get('/basic', function () {
-        return view('pertemuan1.basic');
-    })->name('basic');
-
-    // access into fallback page
-    Route::get('/fallback', function () {
-        return view('pertemuan1.fallback');
-    })->name('fallback');
-
-    Route::prefix("/testing-group")->group(function () {
-        Route::get('/group-page', function () {
-            return view('pertemuan1.testing-group.group-page');
-        })->name('group-page');
-    });
-
-    // Named routing
-    Route::get('/named', function () {
-        return view('pertemuan1.named');
-    })->name('different-named');
-
-    Route::get('/named/{namedParam}', [Pertemuan1Controller::class, 'namedParam'])->name('namedParam');
-});
+use App\Http\Controllers\PrescriptionController;
+use App\Http\Controllers\SpecializationController;
+use App\Http\Controllers\AppointmentController;
 
 // Fallback routing
 Route::fallback(function () {
@@ -58,12 +23,42 @@ Route::redirect('/', '/page-pertemuan-2/sections/dashboard', 301);
 // Pertemuan 2
 Route::prefix('/page-pertemuan-2')->group(function () {
     Route::prefix('/sections')->group(function () {
-        Route::get('/dashboard', fn() => view('page-pertemuan-2.sections.dashboard'))->name('dashboard');
-        Route::get('/pasien', [ApiController::class, 'getPatient'])->name('pasien');
-        Route::get('/doctor', [ApiController::class, 'getDoctor'])->name('doctor');
-        Route::get('/health-center', [ApiController::class, 'getHealthCenter'])->name('healthCenter');
-        Route::get('/drug', [ApiController::class, 'getDrug'])->name('drug');
-        Route::get('/specialization', [ApiController::class, 'getSpecialization'])->name('specialization');
-        Route::get('/service', [ApiController::class, 'getService'])->name('service');
+        Route::get('/dashboard', [DashboardController::class, 'statistics'])->name('dashboard');
+
+        // Patient
+        Route::get('/pasien', [PatientController::class, 'get'])->name('pasien');
+        Route::delete('/pasien/delete/{id}', [PatientController::class, 'delete'])->name('pasien.delete');
+
+        // Doctor
+        Route::get('/doctor', [DoctorController::class, 'get'])->name('doctor');
+        Route::delete('/doctor/delete/{id}', [DoctorController::class, 'delete'])->name('doctor.delete');
+
+        // Health Center
+        Route::get('/health-center', [HealthCenterController::class, 'get'])->name('healthCenter');
+        Route::delete('/health-center/delete/{id}', [HealthCenterController::class, 'delete'])->name('healthCenter.delete');
+
+        //Services
+        Route::get('/service', [ServiceController::class, 'get'])->name('service');
+        Route::delete('/service/delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
+
+        // Drugs
+        Route::get('/drug', [DrugController::class, 'get'])->name('drug');
+        Route::delete('/drug/delete/{id}', [DrugController::class, 'delete'])->name('drug.delete');
+
+        // Specialization
+        Route::get('/specialization', [SpecializationController::class, 'get'])->name('specialization');
+        Route::delete('/specialization/delete/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
+
+        // Prescription
+        Route::get('/prescription', [PrescriptionController::class, 'get'])->name('prescription');
+        Route::delete('/prescription/delete/{id}', [PrescriptionController::class, 'delete'])->name('prescription.delete');
+
+        // Medical Report
+        Route::get('/medicalReport', [MedicalReportController::class, 'get'])->name('medicalReport');
+        Route::delete('/medicalReport/delete/{id}', [MedicalReportController::class, 'delete'])->name('medicalReport.delete');
+
+        // Appointment
+        Route::get('/appointment', [AppointmentController::class, 'get'])->name('appointment');
+        Route::delete('/appointment/delete/{id}', [AppointmentController::class, 'delete'])->name('appointment.delete');
     });
 });
