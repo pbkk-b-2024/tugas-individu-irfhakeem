@@ -40,4 +40,17 @@ class ServiceController extends Controller
 
         return redirect()->route('service')->with('error', 'Service not found.');
     }
+
+    function add(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+        ]);
+
+        $service = new Service();
+        $service->nama = $request->nama;
+        $service->save();
+
+        return redirect()->route('service')->with('success');
+    }
 }

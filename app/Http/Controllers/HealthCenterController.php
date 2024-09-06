@@ -36,4 +36,23 @@ class HealthCenterController extends Controller
 
         return redirect()->route('healthCenter')->with('error', 'Health Center not found.');
     }
+
+    function add(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'email' => 'required',
+        ]);
+
+        $healthCenter = new HealthCenter();
+        $healthCenter->nama = $request->nama;
+        $healthCenter->alamat = $request->alamat;
+        $healthCenter->no_telp = $request->no_telp;
+        $healthCenter->email = $request->email;
+        $healthCenter->save();
+
+        return redirect()->route('healthCenter')->with('success');
+    }
 }

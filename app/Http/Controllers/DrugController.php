@@ -37,4 +37,21 @@ class DrugController extends Controller
 
         return redirect()->route('drug')->with('error', 'Drug not found.');
     }
+
+    function add(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'jenis' => 'required',
+            'satuan' => 'required'
+        ]);
+
+        $drug = new Drug();
+        $drug->nama = $request->nama;
+        $drug->jenis = $request->jenis;
+        $drug->satuan = $request->satuan;
+        $drug->save();
+
+        return redirect()->route('drug')->with('success');
+    }
 }

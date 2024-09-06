@@ -36,4 +36,17 @@ class SpecializationController extends Controller
 
         return redirect()->route('specialization')->with('error', 'Specialization not found.');
     }
+
+    function add(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+        ]);
+
+        $specialization = new Specialization();
+        $specialization->nama = $request->nama;
+        $specialization->save();
+
+        return redirect()->route('specialization')->with('success');
+    }
 }

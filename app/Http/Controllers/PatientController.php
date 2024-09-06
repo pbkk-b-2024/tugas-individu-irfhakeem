@@ -57,8 +57,8 @@ class PatientController extends Controller
         $patient->tanggal_lahir = $request->tanggal_lahir;
         $patient->email = $request->email;
         $patient->no_hp = $request->no_hp;
-        $patient->Golongan_darah = $request->Golongan_darah;
         $patient->jenis_kelamin = $request->jenis_kelamin;
+        $patient->Golongan_darah = $request->Golongan_darah;
         $patient->save();
 
         return redirect()->route('pasien')->with('success', 'Patient added successfully.');
