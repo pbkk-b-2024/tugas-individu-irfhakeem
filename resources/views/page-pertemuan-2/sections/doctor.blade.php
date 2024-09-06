@@ -45,12 +45,16 @@
         </table>
     </div>
 
-    <div id="pasien_modal" class="fixed flex inset-0 items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="mt-3">
+        {{ $doctors->onEachSide(1)->links() }}
+    </div>
+
+    <div id="doctor_modal" class="fixed flex inset-0 items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="p-10 bg-white rounded-lg shadow-lg max-w-3xl w-full">
             <form action="{{ route('doctor.add') }}" method="POST">
                 @csrf
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="sip" name="sip" id="sip" pattern="[0-9]{8}"
+                    <input type="sip" name="sip" id="sip" pattern="[0-9]{9}" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                         placeholder=" " required />
                     <label for="sip"
@@ -58,7 +62,7 @@
                         SIP</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="nama" name="nama" id="nama"
+                    <input type="nama" name="nama" id="nama" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                         placeholder=" " required />
                     <label for="nama"
@@ -66,7 +70,7 @@
                         Lengkap</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input datepicker id="tanggal_lahir" type="text" name="tanggal_lahir"
+                    <input datepicker id="tanggal_lahir" type="text" name="tanggal_lahir" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                         placeholder="" required>
                     <label for="tanggal_lahir"
@@ -76,7 +80,7 @@
 
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" autocomplete="off"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                             placeholder=" " required />
                         <label for="email"
@@ -84,7 +88,7 @@
                             Email</label>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="no_hp" pattern="^08[0-9]{8,13}$" name="no_hp" id="no_hp"
+                        <input type="no_hp" pattern="^08[0-9]{8,13}$" name="no_hp" id="no_hp" autocomplete="off"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                             placeholder=" " required />
                         <label for="no_hp"
@@ -96,7 +100,7 @@
                     <div class="relative z-0 w-full mb-5 group">
                         <label for="jenis_kelamin" class="block mb-2 text-sm text-gray-500">Jenis Kelamin
                         </label>
-                        <select id="jenis_kelamin" name="jenis_kelamin"
+                        <select id="jenis_kelamin" name="jenis_kelamin" autocomplete="off"
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
                             <option>L</option>
                             <option>P</option>
@@ -104,24 +108,23 @@
                         </select>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
-                        {{-- Menampilkan 5 tapi ada suggestion --}}
-                        <label for="Golongan_darah" class="block mb-2 text-sm text-gray-500">Spesialis ID</label>
-                        <select id="Golongan_darah" name="Golongan_darah"
+                        <label for="spesialis_id" class="block mb-2 text-sm text-gray-500">Spesialis ID</label>
+                        <select id="spesialis_id" name="spesialis_id" autocomplete="off" required
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>AB</option>
-                            <option>O</option>
+                            @foreach ($specializations as $specialization)
+                                <option value="{{ $specialization->spesialis_id }}">{{ $specialization->spesialisasi }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
-                        <label for="Golongan_darah" class="block mb-2 text-sm text-gray-500">Health Center ID</label>
-                        <select id="Golongan_darah" name="Golongan_darah"
+                        <label for="health_center_id" class="block mb-2 text-sm text-gray-500">Health Center ID</label>
+                        <select id="health_center_id" name="health_center_id" autocomplete="off" required
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>AB</option>
-                            <option>O</option>
+                            @foreach ($healthCenters as $healthCenter)
+                                <option value="{{ $healthCenter->health_center_id }}">{{ $healthCenter->nama }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -137,7 +140,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('pasien_modal');
+            const modal = document.getElementById('doctor_modal');
             const closeModalButton = document.getElementById('close_modal');
             const addButton = document.getElementById('addButton');
 
@@ -156,4 +159,7 @@
             addButton.addEventListener('click', openModal);
         });
     </script>
+
+
+
 @endsection

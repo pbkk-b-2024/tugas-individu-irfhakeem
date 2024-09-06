@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use App\Models\HealthCenter;
+use App\Models\Specialization;
 use Illuminate\Support\Facades\Schema;
 
 class DoctorController extends Controller
@@ -16,12 +18,12 @@ class DoctorController extends Controller
 
         $excludedColumns = ['created_at', 'updated_at'];
 
+        $healthCenters = HealthCenter::all();
+        $specializations = Specialization::all();
+
         $columns = array_diff($columns, $excludedColumns);
 
-        return view('page-pertemuan-2.sections.doctor', [
-            'columns' => $columns,
-            'doctors' => $doctors
-        ]);
+        return view('page-pertemuan-2.sections.doctor', compact('columns', 'doctors', 'healthCenters', 'specializations'));
     }
 
     function delete($id)
@@ -48,10 +50,6 @@ class DoctorController extends Controller
             'tanggal_lahir' => 'required',
             'health_center_id' => 'required',
         ]);
-
-        // Array untuk Suggestion
-        $spesialisArr = [];
-        $healthCenterArr = [];
 
         $doctor = new Doctor();
         $doctor->sip = $request->sip;

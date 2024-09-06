@@ -50,8 +50,9 @@ class DrugController extends Controller
         $drug->nama = $request->nama;
         $drug->jenis = $request->jenis;
         $drug->satuan = $request->satuan;
+        // dd($drug->nama, $drug->jenis, $drug->satuan);
         $drug->save();
 
-        return redirect()->route('drug')->with('success');
+        return redirect()->route('drug')->with('success', 'Drug deleted successfully.');
     }
 }

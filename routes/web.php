@@ -28,7 +28,7 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         Route::get('/pasien', [PatientController::class, 'get'])->name('pasien');
         Route::delete('/pasien/delete/{id}', [PatientController::class, 'delete'])->name('pasien.delete');
         Route::post('/pasien/add', [PatientController::class, 'add'])->name('pasien.add');
-        Route::get('/pasien/edit/{id}', [PatientController::class, 'edit'])->name('pasien.edit');
+
 
         // Doctor
         Route::get('/doctor', [DoctorController::class, 'get'])->name('doctor');
@@ -62,6 +62,7 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         // Medical Report
         Route::get('/medicalReport', [MedicalReportController::class, 'get'])->name('medicalReport');
         Route::delete('/medicalReport/delete/{id}', [MedicalReportController::class, 'delete'])->name('medicalReport.delete');
+        Route::post('/medicalReport/add', [MedicalReportController::class, 'add'])->name('medicalReport.add');
 
         // Appointment
         Route::get('/appointment', [AppointmentController::class, 'get'])->name('appointment');

@@ -45,12 +45,16 @@
         </table>
     </div>
 
+    <div class="mt-3">
+        {{ $drugs->onEachSide(1)->links() }}
+    </div>
+
     <div id="drug_modal" class="fixed flex inset-0 items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="p-10 bg-white rounded-lg shadow-lg max-w-3xl w-full">
             <form action="{{ route('drug.add') }}" method="POST">
                 @csrf
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="nama" name="nama" id="nama" pattern="[0-9]{8}"
+                    <input type="nama" name="nama" id="nama" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                         placeholder=" " required />
                     <label for="nama"
@@ -61,7 +65,7 @@
                     <div class="relative z-0 w-full mb-5 group">
                         <label for="jenis" class="block mb-2 text-sm text-gray-500">Jenis Obat
                         </label>
-                        <select id="jenis" name="jenis"
+                        <select id="jenis" name="jenis" autocomplete="off" required
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
                             <option>Tablet</option>
                             <option>Cair</option>
@@ -70,7 +74,7 @@
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
                         <label for="satuan" class="block mb-2 text-sm text-gray-500">Satuan Obat</label>
-                        <select id="satuan" name="satuan"
+                        <select id="satuan" name="satuan" autocomplete="off" required
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
                             <option>g</option>
                             <option>ml</option>

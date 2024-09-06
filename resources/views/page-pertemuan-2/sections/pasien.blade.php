@@ -45,12 +45,16 @@
         </table>
     </div>
 
+    <div class="mt-3">
+        {{ $patients->onEachSide(1)->links() }}
+    </div>
+
     <div id="pasien_modal" class="fixed flex inset-0 items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="p-10 bg-white rounded-lg shadow-lg max-w-3xl w-full">
             <form action="{{ route('pasien.add') }}" method="POST">
                 @csrf
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="nik" name="nik" id="nik" pattern="[0-9]{8}"
+                    <input type="nik" name="nik" id="nik" pattern="[0-9]{8}" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                         placeholder=" " required />
                     <label for="nik"
@@ -58,7 +62,7 @@
                         NIK</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="name" name="name" id="name"
+                    <input type="name" name="name" id="name" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                         placeholder=" " required />
                     <label for="name"
@@ -66,7 +70,7 @@
                         Lengkap</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input datepicker id="tanggal_lahir" type="text" name="tanggal_lahir"
+                    <input datepicker id="tanggal_lahir" type="text" name="tanggal_lahir" autocomplete="off"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                         placeholder="" required>
                     <label for="tanggal_lahir"
@@ -76,7 +80,7 @@
 
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" autocomplete="off"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                             placeholder=" " required />
                         <label for="email"
@@ -84,7 +88,7 @@
                             Email</label>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="no_hp" pattern="^08[0-9]{8,13}$" name="no_hp" id="no_hp"
+                        <input type="no_hp" pattern="^08[0-9]{8,13}$" name="no_hp" id="no_hp" autocomplete="off"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
                             placeholder=" " required />
                         <label for="no_hp"

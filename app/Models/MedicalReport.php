@@ -12,6 +12,7 @@ class MedicalReport extends Model
     protected $table = 'medical_reports';
     protected $primaryKey = 'medical_report_id';
     protected $fillable = [
+        'patient_id',
         'dokter',
         'faskes',
         'service',
