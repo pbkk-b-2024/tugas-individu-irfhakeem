@@ -31,7 +31,8 @@
                             </td>
                         @endforeach
                         <td class="flex gap-3 px-4 py-2">
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                            <a href="{{ route('specialization.edit', $specialization->spesialis_id) }}"
+                                class="font-medium text-blue-600 hover:underline">Edit</a>
                             <form action="{{ route('specialization.delete', $specialization->spesialis_id) }}"
                                 method="POST"
                                 onsubmit="return confirm('Are you sure you want to delete this specialization with ID: {{ $specialization->spesialis_id }}?');">
