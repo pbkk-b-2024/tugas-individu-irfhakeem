@@ -15,7 +15,7 @@ class MedicalReportController extends Controller
     public function get()
     {
         // Ambil data services dengan pagination
-        $medicalReports = MedicalReport::paginate(10);
+        $medicalReports = MedicalReport::orderBy('medical_report_id')->paginate(10);
 
         // Ambil nama kolom dari tabel medicalReports
         $columns = Schema::getColumnListing('medical_reports');
@@ -47,7 +47,7 @@ class MedicalReportController extends Controller
 
     function add(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'patient_id' => 'required',
             'dokter' => 'required',
             'faskes' => 'required',
@@ -57,17 +57,35 @@ class MedicalReportController extends Controller
             'status' => 'required',
         ]);
 
-        $medicalReport = new MedicalReport();
-        $medicalReport->patient_id = $request->patient_id;
-        $medicalReport->dokter = $request->dokter;
-        $medicalReport->faskes = $request->faskes;
-        $medicalReport->service = $request->service;
-        $medicalReport->diagnosis = $request->diagnosis;
-        $medicalReport->date = $request->date;
-        $medicalReport->status = $request->status;
-        // dd($medicalReport->dokter, $medicalReport->faskes, $medicalReport->service, $medicalReport->diagnosis, $medicalReport->date, $medicalReport->status);
-        $medicalReport->save();
-
+        MedicalReport::create($validate);
         return redirect()->route('medicalReport')->with('success', 'Medical Report added successfully.');
+    }
+
+    function edit($id)
+    {
+        $medicalReport = MedicalReport::find($id);
+        $doctors = Doctor::all();
+        $healthCenters = HealthCenter::all();
+        $services = Service::all();
+
+        return view('page-pertemuan-2.sections.medical-report-edit', compact('medicalReport', 'doctors', 'healthCenters', 'services'));
+    }
+
+    function update(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'patient_id' => 'required',
+            'dokter' => 'required',
+            'faskes' => 'required',
+            'service' => 'required',
+            'diagnosis' => 'required',
+            'date' => 'required',
+            'status' => 'required',
+        ]);
+
+        $medicalReport = MedicalReport::find($id);
+        $medicalReport->update($validate);
+
+        return redirect()->route('medicalReport')->with('success', 'Medical Report updated successfully.');
     }
 }

@@ -46,6 +46,10 @@
         </table>
     </div>
 
+    <div class="mt-3">
+        {{ $specializations->onEachSide(1)->links() }}
+    </div>
+
     <div id="specialization_modal"
         class="fixed flex inset-0 items-center justify-center bg-black bg-opacity-50 z-50 hidden">
         <div class="p-10 bg-white rounded-lg shadow-lg max-w-3xl w-full">

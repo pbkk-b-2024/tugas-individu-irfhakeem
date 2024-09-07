@@ -28,7 +28,8 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         Route::get('/pasien', [PatientController::class, 'get'])->name('pasien');
         Route::delete('/pasien/delete/{id}', [PatientController::class, 'delete'])->name('pasien.delete');
         Route::post('/pasien/add', [PatientController::class, 'add'])->name('pasien.add');
-
+        Route::get('/pasien/edit/{id}', [PatientController::class, 'edit'])->name('pasien.edit');
+        Route::put('/pasien/{id}', [PatientController::class, 'update'])->name('pasien.update');
 
         // Doctor
         Route::get('/doctor', [DoctorController::class, 'get'])->name('doctor');
@@ -63,6 +64,8 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         Route::get('/medicalReport', [MedicalReportController::class, 'get'])->name('medicalReport');
         Route::delete('/medicalReport/delete/{id}', [MedicalReportController::class, 'delete'])->name('medicalReport.delete');
         Route::post('/medicalReport/add', [MedicalReportController::class, 'add'])->name('medicalReport.add');
+        Route::get('/medicalReport/edit/{id}', [MedicalReportController::class, 'edit'])->name('medicalReport.edit');
+        Route::put('/medicalReport/{id}', [MedicalReportController::class, 'update'])->name('medicalReport.update');
 
         // Appointment
         Route::get('/appointment', [AppointmentController::class, 'get'])->name('appointment');

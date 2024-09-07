@@ -44,4 +44,8 @@
             </tbody>
         </table>
     </div>
+
+    <div class="mt-3">
+        {{ $prescriptions->onEachSide(1)->links() }}
+    </div>
 @endsection

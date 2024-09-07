@@ -10,8 +10,9 @@ class PatientController extends Controller
 {
     public function get()
     {
+
         // Ambil semua data pasien
-        $patients = Patient::paginate(10);
+        $patients = Patient::orderBy('patient_id')->paginate(10);
 
         // Ambil nama kolom dari tabel patients
         $columns = Schema::getColumnListing('patients');
@@ -41,16 +42,6 @@ class PatientController extends Controller
 
     function add(Request $request)
     {
-        $request->validate([
-            'nik' => 'required',
-            'name' => 'required',
-            'tanggal_lahir' => 'required',
-            'email' => 'required',
-            'no_hp' => 'required',
-            'Golongan_darah' => 'required',
-            'jenis_kelamin' => 'required',
-        ]);
-
         $patient = new Patient();
         $patient->name = $request->name;
         $patient->nik = $request->nik;
@@ -64,9 +55,20 @@ class PatientController extends Controller
         return redirect()->route('pasien')->with('success', 'Patient added successfully.');
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $request->validate([
+        $patient = Patient::find($id);
+
+        if ($patient) {
+            return view('page-pertemuan-2.sections.pasien-edit', compact('patient'));
+        }
+
+        return redirect()->route('pasien')->with('error', 'Patient not found.');
+    }
+
+    function update(Request $request, $id)
+    {
+        $validate = $request->validate([
             'nik' => 'required',
             'name' => 'required',
             'tanggal_lahir' => 'required',
@@ -77,20 +79,7 @@ class PatientController extends Controller
         ]);
 
         $patient = Patient::find($id);
-
-        if ($patient) {
-            $patient->name = $request->name;
-            $patient->nik = $request->nik;
-            $patient->tanggal_lahir = $request->tanggal_lahir;
-            $patient->email = $request->email;
-            $patient->no_hp = $request->no_hp;
-            $patient->jenis_kelamin = $request->jenis_kelamin;
-            $patient->Golongan_darah = $request->Golongan_darah;
-            $patient->save();
-
-            return redirect()->route('pasien')->with('success', 'Patient updated successfully.');
-        }
-
-        return redirect()->route('pasien')->with('error', 'Patient not found.');
+        $patient->update($validate);
+        return redirect()->route('pasien')->with('success', 'Patient updated successfully.');
     }
 }

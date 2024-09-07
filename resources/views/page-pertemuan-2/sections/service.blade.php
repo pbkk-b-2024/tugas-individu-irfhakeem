@@ -67,6 +67,10 @@
         </div>
     </div>
 
+    <div class="mt-3">
+        {{ $services->onEachSide(1)->links() }}
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('service_modal');

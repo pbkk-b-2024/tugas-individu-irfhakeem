@@ -31,7 +31,8 @@
                             </td>
                         @endforeach
                         <td class="flex gap-3 px-4 py-2">
-                            <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                            <a href="{{ route('pasien.edit', $patient->patient_id) }}"
+                                class="font-medium text-blue-600 hover:underline">Edit</a>
                             <form action="{{ route('pasien.delete', $patient->patient_id) }}" method="POST"
                                 onsubmit="return confirm('Are you sure you want to delete this patient with ID: {{ $patient->patient_id }}?');">
                                 @csrf
