@@ -22,7 +22,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody id="myTable">
+            <tbody id="myTable" class="text-center">
                 @foreach ($medicalReports as $medicalReport)
                     <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
                         @foreach ($columns as $column)
@@ -30,7 +30,7 @@
                                 {{ $medicalReport->$column }}
                             </td>
                         @endforeach
-                        <td class="flex gap-3 px-4 py-2">
+                        <td class="flex gap-3 px-4 py-2 justify-center">
                             <a href="{{ route('medicalReport.edit', $medicalReport->medical_report_id) }}"
                                 class="font-medium text-blue-600 hover:underline">Edit</a>
                             <form action="{{ route('medicalReport.delete', $medicalReport->medical_report_id) }}"

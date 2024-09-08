@@ -27,7 +27,7 @@ class PrescriptionController extends Controller
         // Filter kolom yang tidak diinginkan
         $columns = array_diff($columns, $excludedColumns);
 
-        return view('page-pertemuan-2.sections.prescription', compact('prescriptions', 'columns', 'patients', 'doctors'));
+        return view('page-pertemuan-2.sections.prescription', compact('prescriptions', 'columns', 'doctors'));
     }
 
     function delete($id)

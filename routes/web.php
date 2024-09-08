@@ -77,5 +77,7 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         Route::get('/appointment', [AppointmentController::class, 'get'])->name('appointment');
         Route::delete('/appointment/delete/{id}', [AppointmentController::class, 'delete'])->name('appointment.delete');
         Route::post('/appointment/add', [AppointmentController::class, 'add'])->name('appointment.add');
+        Route::get('/appointment/edit/{id}', [AppointmentController::class, 'edit'])->name('appointment.edit');
+        Route::put('/appointment/{id}', [AppointmentController::class, 'update'])->name('appointment.update');
     });
 });

@@ -64,11 +64,10 @@
                     <label for="spesialis_id" class="block mb-2 text-sm text-gray-500">Spesialis ID</label>
                     <select id="spesialis_id" name="spesialis_id" autocomplete="off" required
                         class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
-                        {{-- Revisi --}}
                         @foreach ($specializations as $specialization)
                             <option value="{{ $specialization->spesialis_id }}"
                                 {{ $specialization->spesialis_id == $doctor->spesialis_id ? 'selected' : '' }}>
-                                {{ $specialization->nama }}
+                                {{ $specialization->spesialisasi }}
                             </option>
                         @endforeach
                     </select>
@@ -77,10 +76,9 @@
                     <label for="health_center_id" class="block mb-2 text-sm text-gray-500">Health Center ID</label>
                     <select id="health_center_id" name="health_center_id" autocomplete="off" required
                         class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
-                        {{-- Revisi --}}
                         @foreach ($healthCenters as $healthCenter)
-                            <option value="{{ $healthCenter->health_center_id }}">
-                                {{ $healthCenter->health_center_id == $doctor->health_center_id ? 'selected' : '' }}
+                            <option value="{{ $healthCenter->health_center_id }}"
+                                {{ $healthCenter->health_center_id == $doctor->health_center_id ? 'selected' : '' }}>
                                 {{ $healthCenter->nama }}
                             </option>
                         @endforeach

@@ -28,7 +28,7 @@ class AppointmentController extends Controller
         return view('page-pertemuan-2.sections.appointment', compact('columns', 'appointments', 'doctors', 'healthCenters', 'services'));
     }
 
-    function delete($id)
+    public function delete($id)
     {
         $appointment = Appointment::find($id);
 
@@ -40,13 +40,14 @@ class AppointmentController extends Controller
         return redirect()->route('appointment')->with('error', 'Appointment not found.');
     }
 
-    function add(Request $request)
+    public function add(Request $request)
     {
         $validate = $request->validate([
             'date' => 'required',
-            'dokter_id' => 'required',
+            'doctor_id' => 'required',
             'health_center_id' => 'required',
             'service_id' => 'required',
+            'patient_id' => 'required',
             'time' => 'required',
         ]);
 
@@ -61,16 +62,17 @@ class AppointmentController extends Controller
         $healthCenters = HealthCenter::all();
         $services = Service::all();
 
-        return view('page-pertemuan-2.sections.appointment-edit', compact('appointment'));
+        return view('page-pertemuan-2.sections.appointment-edit', compact('appointment', 'doctors', 'healthCenters', 'services'));
     }
 
     function update(Request $request, $id)
     {
         $request->validate([
             'date' => 'required',
-            'dokter_id' => 'required',
+            'doctor_id' => 'required',
             'health_center_id' => 'required',
             'service_id' => 'required',
+            'patient_id' => 'required',
             'time' => 'required',
         ]);
 
