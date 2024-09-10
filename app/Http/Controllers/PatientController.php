@@ -2,14 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MedicalReport;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
+    // Patient Page
+    public function getByAuth()
+    {
+        $email = Auth::user()->email ?? null;
+        $patient = Patient::where('email', $email)->first();
+
+        if ($patient) {
+            return view('patient.dashboard', compact('patient'));
+        }
+
+        return redirect()->route('welcome')->with('error', 'Patient not found.');
+    }
+
+    public function getMyMedicalReports()
+    {
+        $email = Auth::user()->email ?? null;
+        $patient = Patient::where('email', $email)->first();
+        $id = $patient->patient_id ?? null;
+
+        if ($id) {
+            $medicalReports = MedicalReport::where('patient_id', $id)->orderBy('created_at', 'desc')->paginate(10);
+            return view('patient.medical-reports', compact('medicalReports'));
+        }
+
+        return redirect()->route('dahsboard')->with('error', 'Patient not found.');
+    }
+
+
+
+    // Admin Page
     public function get()
     {
 

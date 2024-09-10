@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Auth;
 // Welcome page
 Route::get('/', function () {
     return view('welcome');
+})->name('welcome');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard2');
+
+Route::group(['prefix' => 'patient/'], function () {
+    Route::get('/dasboard', [PatientController::class, 'getByAuth'])->name('patient.dashboard');
+    Route::get('/medical-reports', [PatientController::class, 'getMyMedicalReports'])->name('patient.medical-reports');
 });
 
 // Fallback routing
@@ -86,11 +95,9 @@ Route::prefix('/page-pertemuan-2')->group(function () {
     });
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard2');
 
-Route::redirect('/dashboard', '/page-pertemuan-2/sections/dashboard');
+
+// Route::redirect('/dashboard', '/page-pertemuan-2/sections/dashboard');
 
 Route::get('/assign-role', function () {
     $user = Auth::user();

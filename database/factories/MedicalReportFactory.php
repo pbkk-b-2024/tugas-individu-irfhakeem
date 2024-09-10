@@ -22,6 +22,7 @@ class MedicalReportFactory extends Factory
     {
         return [
             //
+            'nama' => fake()->words(),
             'patient_id' => fake()->randomElement(Patient::pluck('patient_id')->toArray()),
             'dokter' => fake()->randomElement(Doctor::pluck('nama')->toArray()),
             'faskes' => fake()->randomElement(HealthCenter::pluck('nama')->toArray()),

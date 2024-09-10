@@ -921,10 +921,41 @@
                     @if (Route::has('login'))
                         <nav class="-mx-3 flex flex-1 justify-end">
                             @auth
-                                <a href="{{ route('dashboard2') }}"
+                                @role('admin')
+                                    <a href="{{ route('dashboard') }}"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                        Dashboard
+                                    </a>
+                                @endrole
+                                @role('patient')
+                                    {{-- @php
+                                        $email = Auth::user()->email ?? null;
+                                        $patientId = null;
+
+                                        if ($email) {
+                                            $patient = DB::table('patients')->where('email', $email)->first();
+                                            $patientId = $patient->patient_id ?? null;
+                                        }
+
+                                        dd($patientId);
+
+                                    @endphp --}}
+
+                                    <a href="{{ route('patient.dashboard') }}"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                        Dashboard
+                                    </a>
+                                @endrole
+                                @role('doctor')
+                                    <a href="{{ route('doctor.dashboard') }}"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                        Dashboard
+                                    </a>
+                                @endrole
+                                {{-- <a href="{{ route('dashboard2') }}"
                                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                     Dashboard
-                                </a>
+                                </a> --}}
                             @else
                                 <a href="{{ route('login') }}"
                                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
