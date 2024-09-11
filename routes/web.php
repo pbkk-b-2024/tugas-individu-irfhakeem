@@ -22,10 +22,18 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->name('dashboard2');
 
-Route::group(['prefix' => 'patient/'], function () {
-    Route::get('/dasboard', [PatientController::class, 'getByAuth'])->name('patient.dashboard');
-    Route::get('/medical-reports', [PatientController::class, 'getMyMedicalReports'])->name('patient.medical-reports');
-});
+// Route::group(['prefix' => 'patient/'], function () {
+//     Route::get('/dasboard', [PatientController::class, 'getByAuth'])->name('patient.dashboard');
+//     Route::get('/medical-reports', [PatientController::class, 'getMyMedicalReports'])->name('patient.medical-reports');
+// });
+
+// Route::group(['prefix' => 'doctor/'], function () {
+//     Route::get('/dashboard', function () {
+//         return view('doctor.dashboard');
+//     })->name('doctor.dashboard');
+//     Route::get('/search-medical-reports', [MedicalReportController::class, 'search'])->name('doctor.search-medical-reports');
+//     Route::get('/medical-reports', [MedicalReportController::class, 'search'])->name('doctor.medical-reports');
+// });
 
 // Fallback routing
 Route::fallback(function () {
@@ -94,8 +102,6 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         Route::put('/appointment/{id}', [AppointmentController::class, 'update'])->name('appointment.update');
     });
 });
-
-
 
 // Route::redirect('/dashboard', '/page-pertemuan-2/sections/dashboard');
 

@@ -31,7 +31,8 @@ class PatientController extends Controller
         $id = $patient->patient_id ?? null;
 
         if ($id) {
-            $medicalReports = MedicalReport::where('patient_id', $id)->orderBy('created_at', 'desc')->paginate(10);
+            $medicalReports = MedicalReport::where('patient_id', $id)->orderBy('created_at', direction: 'desc')->paginate(10);
+            // dd($medicalReports);
             return view('patient.medical-reports', compact('medicalReports'));
         }
 
@@ -88,10 +89,9 @@ class PatientController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->nik; // Hash password menggunakan NIK
+        $user->password = $request->nik;
         $user->save();
 
-        // Assign role 'patient' ke user
         $user->assignRole('patient');
 
         return redirect()->route('pasien')->with('success', 'Patient added successfully.');

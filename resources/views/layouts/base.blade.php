@@ -13,6 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
         /* Custom Scrollbar Styles */
         ::-webkit-scrollbar {
             height: 8px;
@@ -47,7 +53,12 @@
 
 <body>
     <div class="bg-white grid grid-cols-10 text-white h-screen">
-        @include('components.patient-sidebar')
+        @role('patient')
+            @include('components.patient-sidebar')
+        @endrole
+        @role('doctor')
+            @include('components.doctor-sidebar')
+        @endrole
         <div class="col-span-8 flex flex-col text-black h-screen overflow-hidden">
             @include('page-pertemuan-2.components.navbar')
             <div class="px-10 flex-1 overflow-x-auto">

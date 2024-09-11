@@ -6,11 +6,20 @@ use App\Models\Doctor;
 use App\Models\HealthCenter;
 use Illuminate\Http\Request;
 use App\Models\MedicalReport;
+use App\Models\Patient;
 use App\Models\Service;
 use Illuminate\Support\Facades\Schema;
 
 class MedicalReportController extends Controller
 {
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $patient = Patient::select('patient_id')->where('patient_id', 'like', "%" . $search . "%")->first();
+        $medicalReports = MedicalReport::where('patient_id', 'like', "%" . $patient->patient_id . "%")->paginate(10);
+
+        return view('doctor.search-medical-report', compact('medicalReports', 'patient'));
+    }
     //
     public function get()
     {
@@ -48,6 +57,7 @@ class MedicalReportController extends Controller
     function add(Request $request)
     {
         $validate = $request->validate([
+            'nama' => 'required',
             'patient_id' => 'required',
             'dokter' => 'required',
             'faskes' => 'required',
@@ -56,6 +66,8 @@ class MedicalReportController extends Controller
             'date' => 'required',
             'status' => 'required',
         ]);
+
+        dd($validate);
 
         MedicalReport::create($validate);
         return redirect()->route('medicalReport')->with('success', 'Medical Report added successfully.');
@@ -74,6 +86,7 @@ class MedicalReportController extends Controller
     function update(Request $request, $id)
     {
         $validate = $request->validate([
+            'nama' => 'required',
             'patient_id' => 'required',
             'dokter' => 'required',
             'faskes' => 'required',

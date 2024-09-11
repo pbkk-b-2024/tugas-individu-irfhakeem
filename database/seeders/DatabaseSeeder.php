@@ -41,42 +41,82 @@ class DatabaseSeeder extends Seeder
         HealthCenterService::factory(15)->create();
         // MedicalReport::factory(10)->create();
         // Appointment::factory(10)->create();
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'patient']);
-        Role::create(['name' => 'doctor']);
-        // // admin edit permissions
-        // Permission::create(['name' => 'edit patients']);
-        // Permission::create(['name' => 'edit doctors']);
-        // Permission::create(['name' => 'edit drugs']);
-        // Permission::create(['name' => 'edit services']);
-        // Permission::create(['name' => 'edit health centers']);
-        // Permission::create(['name' => 'edit specializations']);
+        // Create roles
+        $admin = Role::create(['name' => 'admin']);
+        $patient = Role::create(['name' => 'patient']);
+        $doctor = Role::create(['name' => 'doctor']);
 
-        // // add admin permissions
-        // Permission::create(['name' => 'add patients']);
-        // Permission::create(['name' => 'add doctors']);
-        // Permission::create(['name' => 'add drugs']);
-        // Permission::create(['name' => 'add services']);
-        // Permission::create(['name' => 'add services']);
-        // Permission::create(['name' => 'add specializations']);
+        // Admin edit permissions
+        $editPatients = Permission::create(['name' => 'edit patients']);
+        $editDoctors = Permission::create(['name' => 'edit doctors']);
+        $editDrugs = Permission::create(['name' => 'edit drugs']);
+        $editServices = Permission::create(['name' => 'edit services']);
+        $editHealthCenters = Permission::create(['name' => 'edit health centers']);
+        $editSpecializations = Permission::create(['name' => 'edit specializations']);
 
-        // // delete admin permissions
-        // Permission::create(['name' => 'delete patients']);
-        // Permission::create(['name' => 'delete doctors']);
-        // Permission::create(['name' => 'delete drugs']);
-        // Permission::create(['name' => 'delete services']);
-        // Permission::create(['name' => 'delete health centers']);
-        // Permission::create(['name' => 'delete specializations']);
+        // Add admin permissions
+        $addPatients = Permission::create(['name' => 'add patients']);
+        $addDoctors = Permission::create(['name' => 'add doctors']);
+        $addDrugs = Permission::create(['name' => 'add drugs']);
+        $addServices = Permission::create(['name' => 'add services']);
+        $addSpecializations = Permission::create(['name' => 'add specializations']);
 
-        // // doctor permissions
-        // Permission::create(['name' => 'add medical reports']);
-        // Permission::create(['name' => 'edit medical reports']);
-        // Permission::create(['name' => 'add prescriptions']);
-        // Permission::create(['name' => 'edit prescriptions']);
+        // Delete admin permissions
+        $deletePatients = Permission::create(['name' => 'delete patients']);
+        $deleteDoctors = Permission::create(['name' => 'delete doctors']);
+        $deleteDrugs = Permission::create(['name' => 'delete drugs']);
+        $deleteServices = Permission::create(['name' => 'delete services']);
+        $deleteHealthCenters = Permission::create(['name' => 'delete health centers']);
+        $deleteSpecializations = Permission::create(['name' => 'delete specializations']);
 
-        // // patient permissions and doctor permissions
-        // Permission::create(['name' => 'add appointments']);
-        // Permission::create(['name' => 'edit appointments']);
-        // Permission::create(['name' => 'delete appointments']);
+        // Doctor permissions
+        $addMedicalReports = Permission::create(['name' => 'add medical reports']);
+        $editMedicalReports = Permission::create(['name' => 'edit medical reports']);
+        $addPrescriptions = Permission::create(['name' => 'add prescriptions']);
+        $editPrescriptions = Permission::create(['name' => 'edit prescriptions']);
+
+        // Patient permissions and doctor permissions
+        $addAppointments = Permission::create(['name' => 'add appointments']);
+        $editAppointments = Permission::create(['name' => 'edit appointments']);
+        $deleteAppointments = Permission::create(['name' => 'delete appointments']);
+
+        // Assign permissions to admin role
+        $admin->givePermissionTo([
+            $editPatients,
+            $editDoctors,
+            $editDrugs,
+            $editServices,
+            $editHealthCenters,
+            $editSpecializations,
+            $addPatients,
+            $addDoctors,
+            $addDrugs,
+            $addServices,
+            $addSpecializations,
+            $deletePatients,
+            $deleteDoctors,
+            $deleteDrugs,
+            $deleteServices,
+            $deleteHealthCenters,
+            $deleteSpecializations,
+        ]);
+
+        // Assign permissions to doctor role
+        $doctor->givePermissionTo([
+            $addMedicalReports,
+            $editMedicalReports,
+            $addPrescriptions,
+            $editPrescriptions,
+            $addAppointments,
+            $editAppointments,
+            $deleteAppointments,
+        ]);
+
+        // Assign permissions to patient role
+        $patient->givePermissionTo([
+            $addAppointments,
+            $editAppointments,
+            $deleteAppointments,
+        ]);
     }
 }

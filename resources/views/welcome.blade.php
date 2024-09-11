@@ -941,13 +941,13 @@
 
                                     @endphp --}}
 
-                                    <a href="{{ route('patient.dashboard') }}"
+                                    <a href="{{ route('dashboard') }}"
                                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                         Dashboard
                                     </a>
                                 @endrole
                                 @role('doctor')
-                                    <a href="{{ route('doctor.dashboard') }}"
+                                    <a href="{{ route('dashboard') }}"
                                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                         Dashboard
                                     </a>

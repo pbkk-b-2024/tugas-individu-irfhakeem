@@ -4,17 +4,10 @@
 
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500">
-            <tbody id="myTable" class="text-center">
-                @foreach ($medicalReports as $medicalReport)
-                    <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                        <td>
+        @foreach ($medicalReports as $medicalReport)
+            <p>{{ $medicalReport->nama }}</p>
+        @endforeach
 
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
 
     <div class="mt-3">

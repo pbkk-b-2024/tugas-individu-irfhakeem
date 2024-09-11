@@ -60,6 +60,13 @@
     const sidebarLinks = document.getElementById('sidebar-links');
     let isActive = localStorage.getItem('activeLink') || 'Dashboard';
 
+    // Verifikasi apakah activeLink ada dalam daftar links
+    const linkTitles = links.map(link => link.title);
+    if (!linkTitles.includes(isActive)) {
+        isActive = 'Dashboard';
+        localStorage.setItem('activeLink', isActive);
+    }
+
     links.map(link => {
         const li = document.createElement('li');
         li.innerHTML = `
