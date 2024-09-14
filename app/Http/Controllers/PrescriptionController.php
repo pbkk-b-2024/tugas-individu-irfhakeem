@@ -47,8 +47,11 @@ class PrescriptionController extends Controller
         $request->validate([
             'instruksi' => 'required',
             'dokter' => 'required',
+            'date' => 'required',
             'patient_id' => 'required'
         ]);
+
+        // dd($request->all());
 
         Prescription::create($request->all());
         return redirect()->route('prescription')->with('success', 'Prescription added successfully.');
@@ -66,6 +69,7 @@ class PrescriptionController extends Controller
         $request->validate([
             'instruksi' => 'required',
             'dokter' => 'required',
+            'date' => 'required',
             'patient_id' => 'required'
         ]);
 

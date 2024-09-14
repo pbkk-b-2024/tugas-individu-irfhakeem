@@ -12,31 +12,19 @@ use Illuminate\Support\Facades\Schema;
 
 class MedicalReportController extends Controller
 {
-    public function search(Request $request)
+    public function get(Request $request)
     {
-        $search = $request->search;
-        $patient = Patient::select('patient_id')->where('patient_id', 'like', "%" . $search . "%")->first();
-        $medicalReports = MedicalReport::where('patient_id', 'like', "%" . $patient->patient_id . "%")->paginate(10);
-
-        return view('doctor.search-medical-report', compact('medicalReports', 'patient'));
-    }
-    //
-    public function get()
-    {
-        // Ambil data services dengan pagination
         $medicalReports = MedicalReport::orderBy('medical_report_id')->paginate(10);
-
-        // Ambil nama kolom dari tabel medicalReports
         $columns = Schema::getColumnListing('medical_reports');
 
-        // Kolom yang tidak ingin disertakan
         $excludedColumns = ['created_at', 'updated_at'];
 
         $doctors = Doctor::all();
         $healthCenters = HealthCenter::all();
         $services = Service::all();
 
-        // Filter kolom yang tidak diinginkan
+        // dd($doctors);
+
         $columns = array_diff($columns, $excludedColumns);
 
         return view('page-pertemuan-2.sections.medical-report', compact('medicalReports', 'columns', 'doctors', 'healthCenters', 'services'));
@@ -53,7 +41,6 @@ class MedicalReportController extends Controller
 
         return redirect()->route('medicalReport')->with('error', 'Medical Report not found.');
     }
-
     function add(Request $request)
     {
         $validate = $request->validate([
@@ -67,7 +54,7 @@ class MedicalReportController extends Controller
             'status' => 'required',
         ]);
 
-        dd($validate);
+        // dd($validate);
 
         MedicalReport::create($validate);
         return redirect()->route('medicalReport')->with('success', 'Medical Report added successfully.');

@@ -11,18 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
-    // Patient Page
-    public function getByAuth()
-    {
-        $email = Auth::user()->email ?? null;
-        $patient = Patient::where('email', $email)->first();
-
-        if ($patient) {
-            return view('patient.dashboard', compact('patient'));
-        }
-
-        return redirect()->route('welcome')->with('error', 'Patient not found.');
-    }
 
     public function getMyMedicalReports()
     {
@@ -30,13 +18,19 @@ class PatientController extends Controller
         $patient = Patient::where('email', $email)->first();
         $id = $patient->patient_id ?? null;
 
+        function detailMedicalReport($id)
+        {
+            $medicalReport = MedicalReport::find($id);
+            return view('page-pertemuan-2.sections.pasien-medical-report', compact('medicalReport'));
+        }
+
         if ($id) {
             $medicalReports = MedicalReport::where('patient_id', $id)->orderBy('created_at', direction: 'desc')->paginate(10);
             // dd($medicalReports);
-            return view('patient.medical-reports', compact('medicalReports'));
+            return view('page-pertemuan-2.sections.pasien-medical-report', compact('medicalReports'));
         }
 
-        return redirect()->route('dahsboard')->with('error', 'Patient not found.');
+        return redirect()->route('welcome')->with('error', 'Patient not found.');
     }
 
 

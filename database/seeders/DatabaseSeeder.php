@@ -12,7 +12,6 @@ use App\Models\Prescription;
 use App\Models\Service;
 use App\Models\Specialization;
 use App\Models\HealthCenterService;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -24,13 +23,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         // Patient::factory(100)->create();
         HealthCenter::factory(10)->create();
         Specialization::factory(20)->create();
@@ -41,7 +33,7 @@ class DatabaseSeeder extends Seeder
         HealthCenterService::factory(15)->create();
         // MedicalReport::factory(10)->create();
         // Appointment::factory(10)->create();
-        // Create roles
+
         $admin = Role::create(['name' => 'admin']);
         $patient = Role::create(['name' => 'patient']);
         $doctor = Role::create(['name' => 'doctor']);
@@ -59,6 +51,7 @@ class DatabaseSeeder extends Seeder
         $addDoctors = Permission::create(['name' => 'add doctors']);
         $addDrugs = Permission::create(['name' => 'add drugs']);
         $addServices = Permission::create(['name' => 'add services']);
+        $addHealthCenters = Permission::create(['name' => 'add health centers']);
         $addSpecializations = Permission::create(['name' => 'add specializations']);
 
         // Delete admin permissions
@@ -80,7 +73,6 @@ class DatabaseSeeder extends Seeder
         $editAppointments = Permission::create(['name' => 'edit appointments']);
         $deleteAppointments = Permission::create(['name' => 'delete appointments']);
 
-        // Assign permissions to admin role
         $admin->givePermissionTo([
             $editPatients,
             $editDoctors,
@@ -92,6 +84,7 @@ class DatabaseSeeder extends Seeder
             $addDoctors,
             $addDrugs,
             $addServices,
+            $addHealthCenters,
             $addSpecializations,
             $deletePatients,
             $deleteDoctors,
@@ -101,7 +94,6 @@ class DatabaseSeeder extends Seeder
             $deleteSpecializations,
         ]);
 
-        // Assign permissions to doctor role
         $doctor->givePermissionTo([
             $addMedicalReports,
             $editMedicalReports,
@@ -112,7 +104,6 @@ class DatabaseSeeder extends Seeder
             $deleteAppointments,
         ]);
 
-        // Assign permissions to patient role
         $patient->givePermissionTo([
             $addAppointments,
             $editAppointments,

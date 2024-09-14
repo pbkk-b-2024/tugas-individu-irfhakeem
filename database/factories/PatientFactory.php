@@ -21,9 +21,17 @@ class PatientFactory extends Factory
             'nik' => fake()->unique()->randomNumber(8),
             'tanggal_lahir' => fake()->date(),
             'email' => fake()->unique()->safeEmail(),
-            'no_hp' => fake()->phoneNumber(),
+            'no_hp' => $this->generatePhoneNumber(),
             'Golongan_darah' => fake()->randomElement(['A', 'B', 'AB', 'O']),
             'jenis_kelamin' => fake()->randomElement(['L', 'P']),
         ];
+    }
+
+    private function generatePhoneNumber()
+    {
+        $prefix = '08';
+        $length = 12 - strlen($prefix);
+        $number = $prefix . $this->faker->numerify(str_repeat('#', $length));
+        return $number;
     }
 }

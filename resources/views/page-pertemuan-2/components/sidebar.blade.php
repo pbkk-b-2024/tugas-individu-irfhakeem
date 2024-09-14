@@ -33,101 +33,116 @@
         </div>
         {{-- List --}}
         <ul id="sidebar-links">
-            <!-- Links JavaScript -->
+            @role('admin')
+                <li>
+                    <a href="{{ route('dashboard') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Dashboard</p>
+                    </a>
+                </li>
+            @endrole
+            @role('patient')
+                <li>
+                    <a href="{{ route('dashboardPatient') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('dashboardPatient') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('medicalReportsPatient') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('medicalReportsPatient') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">My Medical Report</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('prescription') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('prescription') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">My Prescriptions</p>
+                    </a>
+                </li>
+            @endrole
+            @role('doctor')
+                <li>
+                    <a href="{{ route('dashboardDoctor') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('dashboardDoctor') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Dashboard</p>
+                    </a>
+                </li>
+            @endrole
+            @can('add patients')
+                <li>
+                    <a href="{{ route('pasien') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('pasien') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Patients</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add doctors')
+                <li>
+                    <a href="{{ route('doctor') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('doctor') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Doctors</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add medical reports')
+                <li>
+                    <a href="{{ route('medicalReport') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('medicalReport') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Medical Reports</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add specializations')
+                <li>
+                    <a href="{{ route('specialization') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('specialization') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Specialization</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add health centers')
+                <li>
+                    <a href="{{ route('healthCenter') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('healthCenter') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Health Centers</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add drugs')
+                <li>
+                    <a href="{{ route('drug') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('drug') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Drugs</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add prescriptions')
+                <li>
+                    <a href="{{ route('prescription') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('prescription') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Prescriptions</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add appointments')
+                <li>
+                    <a href="{{ route('appointment') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('appointment') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Appointments</p>
+                    </a>
+                </li>
+            @endcan
+            @can('add services')
+                <li>
+                    <a href="{{ route('service') }}"
+                        class="my-2 flex items-center justify-start px-5 py-2 transition-colors ease-in-out duration-100 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer text-gray-400 {{ request()->routeIs('service') ? 'bg-gradient-to-r from-[#229799] to-[#22979960] shadow-[#22979960] shadow-md text-white' : '' }}">
+                        <p class="text-md flex-1">Services</p>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>
-
-<script>
-    const links = [{
-            title: 'Dashboard',
-            url: '{{ route('dashboard') }}',
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" height="20" width="auto" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm64 192c17.7 0 32 14.3 32 32l0 96c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-96c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 192c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-192zM320 288c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-32c0-17.7 14.3-32 32-32z"/></svg>`
-        },
-        {
-            title: 'Patients',
-            url: '{{ route('pasien') }}',
-            icon: ''
-        },
-        {
-            title: 'Doctors',
-            url: '{{ route('doctor') }}',
-            icon: ''
-        },
-        {
-            title: 'Medical Reports',
-            url: '{{ route('medicalReport') }}',
-            icon: ''
-        },
-        {
-            title: 'Specialization',
-            url: '{{ route('specialization') }}',
-            icon: ''
-        },
-        {
-            title: 'Health Centers',
-            url: '{{ route('healthCenter') }}',
-            icon: ''
-        },
-        {
-            title: 'Drugs',
-            url: '{{ route('drug') }}',
-            icon: ''
-        },
-        {
-            title: 'Prescriptions',
-            url: '{{ route('prescription') }}',
-            icon: ''
-        },
-        {
-            title: 'Appointments',
-            url: '{{ route('appointment') }}',
-            icon: ''
-        },
-        {
-            title: 'Services',
-            url: '{{ route('service') }}',
-            icon: ''
-        },
-    ];
-
-    const sidebarLinks = document.getElementById('sidebar-links');
-    let isActive = localStorage.getItem('activeLink') || 'Dashboard';
-
-    // Verifikasi apakah activeLink ada dalam daftar links
-    const linkTitles = links.map(link => link.title);
-    if (!linkTitles.includes(isActive)) {
-        isActive = 'Dashboard';
-        localStorage.setItem('activeLink', isActive);
-    }
-
-    links.map(link => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <a href="${link.url}" class="my-2 flex items-center justify-start px-5 py-2 hover:bg-gradient-to-r from-[#22979960] to-[#22979930] transition-colors ease-in-out duration-100 hover:text-white hover:shadow-[#22979930] hover:shadow-md rounded-full cursor-pointer ${link.title === isActive ? 'bg-gradient-to-r from-[#229799] to-[#22979940] shadow-[#22979960] shadow-md text-white' : 'text-gray-400'}">
-                <p class="text-md flex-1">${link.title}</p>
-            </a>
-        `;
-        li.addEventListener('click', () => {
-            isActive = link.title;
-            localStorage.setItem('activeLink', isActive);
-            updateActiveState();
-        });
-        sidebarLinks.appendChild(li);
-    });
-
-    function updateActiveState() {
-        const links = sidebarLinks.querySelectorAll('a');
-        links.forEach(link => {
-            if (link.textContent.trim() === isActive) {
-                link.classList.add('bg-[#22979930]');
-            } else {
-                link.classList.remove('bg-[#22979930]');
-            }
-        });
-    }
-
-    updateActiveState();
-</script>
 
 </html>

@@ -13,27 +13,22 @@ use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Auth;
 
+
+
 // Welcome page
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard2');
-
-// Route::group(['prefix' => 'patient/'], function () {
-//     Route::get('/dasboard', [PatientController::class, 'getByAuth'])->name('patient.dashboard');
-//     Route::get('/medical-reports', [PatientController::class, 'getMyMedicalReports'])->name('patient.medical-reports');
-// });
-
-// Route::group(['prefix' => 'doctor/'], function () {
-//     Route::get('/dashboard', function () {
-//         return view('doctor.dashboard');
-//     })->name('doctor.dashboard');
-//     Route::get('/search-medical-reports', [MedicalReportController::class, 'search'])->name('doctor.search-medical-reports');
-//     Route::get('/medical-reports', [MedicalReportController::class, 'search'])->name('doctor.medical-reports');
-// });
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    if (Auth::user()->hasRole('admin')) {
+        return redirect()->route('dashboard');
+    } else if (Auth::user()->hasRole('patient')) {
+        return redirect()->route('dashboardPatient');
+    } else if (Auth::user()->hasRole('doctor')) {
+        return redirect()->route('dashboardDoctor');
+    }
+});
 
 // Fallback routing
 Route::fallback(function () {
@@ -43,9 +38,18 @@ Route::fallback(function () {
 // Pertemuan 2
 Route::prefix('/page-pertemuan-2')->group(function () {
     Route::prefix('/sections')->group(function () {
+        // admin Dashboard
         Route::get('/dashboard', [DashboardController::class, 'statistics'])->name('dashboard');
+        // patient Dashboard
+        Route::get('/dashboard-patient', [DashboardController::class, 'getStatisticPatient'])->name('dashboardPatient');
+        // doctor Dashboard
+        Route::get('/dashboard-doctor', [DashboardController::class, 'getStatisticDoctor'])->name('dashboardDoctor');
 
-        // Patient
+        // ADMIN
+
+        // Patient Only
+        Route::get('/medical-reports-patient', [PatientController::class, 'getMyMedicalReports'])->name('medicalReportsPatient');
+
         Route::get('/pasien', [PatientController::class, 'get'])->name('pasien');
         Route::delete('/pasien/delete/{id}', [PatientController::class, 'delete'])->name('pasien.delete');
         Route::post('/pasien/add', [PatientController::class, 'add'])->name('pasien.add');
@@ -86,7 +90,6 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         Route::delete('/prescription/delete/{id}', [PrescriptionController::class, 'delete'])->name('prescription.delete');
         Route::post('/prescription/add', [PrescriptionController::class, 'add'])->name('prescription.add');
 
-
         // Medical Report
         Route::get('/medicalReport', [MedicalReportController::class, 'get'])->name('medicalReport');
         Route::delete('/medicalReport/delete/{id}', [MedicalReportController::class, 'delete'])->name('medicalReport.delete');
@@ -102,16 +105,3 @@ Route::prefix('/page-pertemuan-2')->group(function () {
         Route::put('/appointment/{id}', [AppointmentController::class, 'update'])->name('appointment.update');
     });
 });
-
-// Route::redirect('/dashboard', '/page-pertemuan-2/sections/dashboard');
-
-Route::get('/assign-role', function () {
-    $user = Auth::user();
-
-    if ($user) {
-        $user->assignRole('admin');
-        return 'Role assigned successfully';
-    }
-
-    return 'User not found';
-})->name('assign.role');

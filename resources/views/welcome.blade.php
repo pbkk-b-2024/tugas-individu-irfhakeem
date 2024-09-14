@@ -928,26 +928,13 @@
                                     </a>
                                 @endrole
                                 @role('patient')
-                                    {{-- @php
-                                        $email = Auth::user()->email ?? null;
-                                        $patientId = null;
-
-                                        if ($email) {
-                                            $patient = DB::table('patients')->where('email', $email)->first();
-                                            $patientId = $patient->patient_id ?? null;
-                                        }
-
-                                        dd($patientId);
-
-                                    @endphp --}}
-
-                                    <a href="{{ route('dashboard') }}"
+                                    <a href="{{ route('dashboardPatient') }}"
                                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                         Dashboard
                                     </a>
                                 @endrole
                                 @role('doctor')
-                                    <a href="{{ route('dashboard') }}"
+                                    <a href="{{ route('dashboardDoctor') }}"
                                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
                                         Dashboard
                                     </a>
