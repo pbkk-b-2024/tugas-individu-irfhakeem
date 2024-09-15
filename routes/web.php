@@ -45,8 +45,10 @@ Route::prefix('/sections')->group(function () {
     Route::middleware(['auth', 'can:view doctor dashboard'])->get('/dashboard-doctor', [DashboardController::class, 'getStatisticDoctor'])->name('dashboardDoctor');
 
     // Patient Only Pages
-    Route::get('/medical-reports-patient', [PatientController::class, 'getMyMedicalReports'])->name('medicalReportsPatient');
-    Route::get('/appointments-patient', [PatientController::class, 'getMyAppointments'])->name('appointmentsPatient');
+    Route::middleware(['auth', 'can:view patient dashboard'])->group(function () {
+        Route::get('/medical-reports-patient', [PatientController::class, 'getMyMedicalReports'])->name('medicalReportsPatient');
+        Route::get('/appointments-patient', [PatientController::class, 'getMyAppointments'])->name('appointmentsPatient');
+    });
 
     Route::middleware(['auth', 'can:add patients'])->group(function () {
         Route::get('/patient', [PatientController::class, 'get'])->name('pasien');
@@ -102,9 +104,8 @@ Route::prefix('/sections')->group(function () {
         Route::put('/specialization/{id}', [SpecializationController::class, 'update'])->name('specialization.update');
     });
 
-
     // Doctor Only Pages
-    // Prescription (edit/updatre x)
+    // Prescription
     Route::middleware(['auth', 'can:add prescriptions'])->group(function () {
         Route::get('/prescription', [PrescriptionController::class, 'get'])->name('prescription');
         Route::delete('/prescription/delete/{id}', [PrescriptionController::class, 'delete'])->name('prescription.delete');

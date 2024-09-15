@@ -36,13 +36,15 @@
                     <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
                         @foreach ($columns as $column)
                             <td class="px-4 py-2 whitespace-nowrap">
-                                {{ $prescription->$column }}
+                                {{ Str::limit($prescription->$column, 50, '...') }}
                             </td>
                         @endforeach
-                        <td class="flex gap-3 px-4 py-2">
+                        <td class="flex gap-3 px-4 py-2 justify-center items-center">
                             @can('edit prescriptions')
                                 <a href="{{ route('prescription.edit', $prescription->prescription_id) }}"
-                                    class="font-medium text-blue-600 hover:underline">Edit</a>
+                                    class="font-medium text-blue-600 hover:underline {{ Auth::user()->name != $prescription->dokter ? 'pointer-events-none text-gray-400' : '' }}">
+                                    Edit
+                                </a>
                             @endcan
                             @can('delete prescriptions')
                                 <form action="{{ route('prescription.delete', $prescription->prescription_id) }}" method="POST"
@@ -89,6 +91,21 @@
                         <label for="dokter" class="block mb-2 text-sm text-gray-500">Dokter</label>
                         <input type="text" id="dokter" name="dokter" value="{{ Auth::user()->name }}" readonly
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
+                    </div>
+
+                    <div class="relative z-0 w-full mb-5 group">
+                        <label for="drug_id" class="block mb-2 text-sm text-gray-500">Obat</label>
+                        <div class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
+                            <div class="grid grid-cols-3">
+                                @foreach ($drugs as $drug)
+                                    <div class="flex items-center mb-2">
+                                        <input type="checkbox" id="drug_{{ $drug->drug_id }}" name="drug_id[]"
+                                            value="{{ $drug->drug_id }}" class="mr-2">
+                                        <label for="drug_{{ $drug->drug_id }}">{{ $drug->nama }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
 
                     <div class="relative z-0 w-full mb-5 group">
