@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MedicalReport;
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,10 @@ class PatientController extends Controller
 
     public function getMyMedicalReports()
     {
+        if (!Auth::user()->hasRole('patient')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $email = Auth::user()->email ?? null;
         $patient = Patient::where('email', $email)->first();
         $id = $patient->patient_id ?? null;
@@ -28,6 +33,20 @@ class PatientController extends Controller
             $medicalReports = MedicalReport::where('patient_id', $id)->orderBy('created_at', direction: 'desc')->paginate(10);
             // dd($medicalReports);
             return view('page-pertemuan-2.sections.pasien-medical-report', compact('medicalReports'));
+        }
+
+        return redirect()->route('welcome')->with('error', 'Patient not found.');
+    }
+
+    public function getMyAppointments()
+    {
+        $email = Auth::user()->email ?? null;
+        $patient = Patient::where('email', $email)->first();
+        $id = $patient->patient_id ?? null;
+
+        if ($id) {
+            $appointments = Appointment::where('patient_id', $id)->orderBy('created_at', direction: 'desc')->paginate(10);
+            return view('page-pertemuan-2.sections.appointment', compact('appointments'));
         }
 
         return redirect()->route('welcome')->with('error', 'Patient not found.');

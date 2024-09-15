@@ -31,7 +31,7 @@
                     @endcan
                 </tr>
             </thead>
-            <tbody id="myTable">
+            <tbody id="myTable" class="text-center">
                 @foreach ($prescriptions as $prescription)
                     <tr class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
                         @foreach ($columns as $column)
@@ -41,7 +41,8 @@
                         @endforeach
                         <td class="flex gap-3 px-4 py-2">
                             @can('edit prescriptions')
-                                <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                                <a href="{{ route('prescription.edit', $prescription->prescription_id) }}"
+                                    class="font-medium text-blue-600 hover:underline">Edit</a>
                             @endcan
                             @can('delete prescriptions')
                                 <form action="{{ route('prescription.delete', $prescription->prescription_id) }}" method="POST"
@@ -86,7 +87,7 @@
 
                     <div class="relative z-0 w-full mb-5 group">
                         <label for="dokter" class="block mb-2 text-sm text-gray-500">Dokter</label>
-                        <input type="text" id="dokter" name="dokter" value="{{ $doctor->nama }}" readonly
+                        <input type="text" id="dokter" name="dokter" value="{{ Auth::user()->name }}" readonly
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
                     </div>
 

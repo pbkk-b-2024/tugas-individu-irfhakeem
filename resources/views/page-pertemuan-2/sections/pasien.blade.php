@@ -1,6 +1,6 @@
 @extends('page-pertemuan-2.layout.base')
 
-@section('title', 'CRUD Patients')
+@section('title', 'Patients')
 
 @section('content')
     <div class="flex justify-end items-center mb-5">

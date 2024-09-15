@@ -2,16 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Appointment;
-use App\Models\Doctor;
 use App\Models\Drug;
 use App\Models\HealthCenter;
-use App\Models\MedicalReport;
-use App\Models\Patient;
-use App\Models\Prescription;
 use App\Models\Service;
 use App\Models\Specialization;
 use App\Models\HealthCenterService;
+use App\Models\Doctor;
+use App\Models\Patient;
+use App\Models\MedicalReport;
+use App\Models\Prescription;
+use App\Models\Appointment;
+use App\Models\PrescriptionDrug;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -23,20 +24,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Patient::factory(100)->create();
         HealthCenter::factory(10)->create();
         Specialization::factory(20)->create();
-        // Doctor::factory(20)->create();
         Drug::factory(15)->create();
         Service::factory(11)->create();
-        // Prescription::factory(10)->create();
-        HealthCenterService::factory(15)->create();
-        // MedicalReport::factory(10)->create();
-        // Appointment::factory(10)->create();
 
         $admin = Role::create(['name' => 'admin']);
-        $patient = Role::create(['name' => 'patient']);
-        $doctor = Role::create(['name' => 'doctor']);
+        $patientRole = Role::create(['name' => 'patient']);
+        $doctorRole = Role::create(['name' => 'doctor']);
+
+        $canViewAdminDashboard = Permission::create(['name' => 'view admin dashboard']);
+        $canViewPatientDashboard = Permission::create(['name' => 'view patient dashboard']);
+        $canViewDoctorDashboard = Permission::create(['name' => 'view doctor dashboard']);
 
         // Admin edit permissions
         $editPatients = Permission::create(['name' => 'edit patients']);
@@ -92,9 +91,10 @@ class DatabaseSeeder extends Seeder
             $deleteServices,
             $deleteHealthCenters,
             $deleteSpecializations,
+            $canViewAdminDashboard
         ]);
 
-        $doctor->givePermissionTo([
+        $doctorRole->givePermissionTo([
             $addMedicalReports,
             $editMedicalReports,
             $addPrescriptions,
@@ -102,12 +102,38 @@ class DatabaseSeeder extends Seeder
             $addAppointments,
             $editAppointments,
             $deleteAppointments,
+            $canViewDoctorDashboard,
         ]);
 
-        $patient->givePermissionTo([
+        $patientRole->givePermissionTo([
             $addAppointments,
             $editAppointments,
             $deleteAppointments,
+            $canViewPatientDashboard,
         ]);
+
+        Doctor::factory(20)->create()->each(function ($doctor) use ($doctorRole) {
+            $user = \App\Models\User::factory()->create([
+                'name'  => $doctor->nama,
+                'email' => $doctor->email,
+                'password' => $doctor->sip,
+            ]);
+            $user->assignRole($doctorRole);
+            $doctor->save();
+        });
+
+        Patient::factory(50)->create()->each(function ($patient) use ($patientRole) {
+            $user = \App\Models\User::factory()->create([
+                'name'  => $patient->name,
+                'email' => $patient->email,
+                'password' => $patient->nik,
+            ]);
+            $user->assignRole($patientRole);
+            $patient->save();
+        });
+
+        MedicalReport::factory(30)->create();
+        Appointment::factory(15)->create();
+        Prescription::factory(25)->create();
     }
 }

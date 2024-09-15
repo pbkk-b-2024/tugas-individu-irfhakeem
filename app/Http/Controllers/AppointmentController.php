@@ -19,21 +19,25 @@ class AppointmentController extends Controller
         $columns = Schema::getColumnListing('appointments');
         $excludedColumns = ['created_at', 'updated_at'];
         $columns = array_diff($columns, $excludedColumns);
-        $services = Service::select('service_id', 'nama')->get();
 
         if (Auth::user()->hasRole('doctor')) {
             $email = Auth::user()->email;
             $doctor = Doctor::where('email', $email)->first();
             $healthCenter = HealthCenter::where('health_center_id', $doctor->health_center_id)->first();
             $appointments = Appointment::where('doctor_id', $doctor->doctor_id)->orderBy('date')->paginate(10);
+            $services = Service::select('service_id', 'nama')->get();
             return view('page-pertemuan-2.sections.appointment', compact('columns', 'appointments', 'doctor', 'healthCenter', 'services'));
         } elseif (Auth::user()->hasRole('patient')) {
             $email = Auth::user()->email;
             $patient = Patient::where('email', $email)->first();
             $appointments = Appointment::where('patient_id', $patient->patient_id)->orderBy('date')->paginate(10);
             $doctors = Doctor::select('doctor_id', 'nama')->get();
+            $services = Service::select('service_id', 'nama')->get();
             $healthCenters = HealthCenter::select('health_center_id', 'nama')->get();
             return view('page-pertemuan-2.sections.appointment', compact('columns', 'appointments', 'doctors', 'healthCenters', 'services', 'patient'));
+        } else {
+            $appointments = Appointment::orderBy('date')->paginate(10);
+            return view('page-pertemuan-2.sections.appointment', compact('columns', 'appointments'));
         }
     }
 

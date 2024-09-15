@@ -32,15 +32,6 @@
             <p class="bg-white px-8 py-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias porro, tenetur
                 placeat non quis corporis exercitationem voluptates aperiam debitis consequuntur vero iure, unde numquam
                 saepe doloribus cum sunt aspernatur tempora.</p>
-            <p class="bg-white px-8 py-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias porro, tenetur
-                placeat non quis corporis exercitationem voluptates aperiam debitis consequuntur vero iure, unde numquam
-                saepe doloribus cum sunt aspernatur tempora.</p>
-            <p class="bg-white px-8 py-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias porro, tenetur
-                placeat non quis corporis exercitationem voluptates aperiam debitis consequuntur vero iure, unde numquam
-                saepe doloribus cum sunt aspernatur tempora.</p>
-            <p class="bg-white px-8 py-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias porro, tenetur
-                placeat non quis corporis exercitationem voluptates aperiam debitis consequuntur vero iure, unde numquam
-                saepe doloribus cum sunt aspernatur tempora.</p>
 
         </div>
 

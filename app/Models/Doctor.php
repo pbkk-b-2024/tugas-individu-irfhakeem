@@ -11,6 +11,8 @@ class Doctor extends Model
     use HasFactory, HasRoles;
     protected $table = 'doctors';
     protected $primaryKey = 'doctor_id';
+
+    protected $guard_name = 'web';
     protected $fillable = [
         'sip',
         'name',

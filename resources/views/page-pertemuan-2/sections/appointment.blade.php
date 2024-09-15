@@ -19,9 +19,11 @@
                             {{ ucfirst(str_replace('_', ' ', $column)) }}
                         </th>
                     @endforeach
-                    <th scope="col" class="px-4 py-2">
-                        Action
-                    </th>
+                    @can('edit appointments' || 'delete appointments')
+                        <th scope="col" class="px-4 py-2">
+                            Action
+                        </th>
+                    @endcan
                 </tr>
             </thead>
             <tbody id="myTable" class="text-center">

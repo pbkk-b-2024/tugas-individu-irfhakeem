@@ -53,7 +53,7 @@
                                 <a href="{{ route('medicalReport.edit', $medicalReport->medical_report_id) }}"
                                     class="text-[11px] font-medium text-blue-600 hover:underline">Edit</a>
                             @endcan
-                            @can('')
+                            @can('delete medical reports')
                                 <form action="{{ route('medicalReport.delete', $medicalReport->medical_report_id) }}"
                                     method="POST"
                                     onsubmit="return confirm('Are you sure you want to delete this medicalReport with ID: {{ $medicalReport->medical_report_id }}?')">

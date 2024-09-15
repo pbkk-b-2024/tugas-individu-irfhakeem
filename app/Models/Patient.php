@@ -13,6 +13,8 @@ class Patient extends Model
 
     protected $table = 'patients';
     protected $primaryKey = 'patient_id';
+
+    protected $guard_name = 'web';
     protected $fillable = [
         'name',
         'nik',

@@ -22,12 +22,11 @@ class PrescriptionController extends Controller
         // Kolom yang tidak ingin disertakan
         $excludedColumns = ['created_at', 'updated_at'];
 
-        $doctors = Doctor::all();
 
         // Filter kolom yang tidak diinginkan
         $columns = array_diff($columns, $excludedColumns);
 
-        return view('page-pertemuan-2.sections.prescription', compact('prescriptions', 'columns', 'doctors'));
+        return view('page-pertemuan-2.sections.prescription', compact('prescriptions', 'columns'));
     }
 
     function delete($id)

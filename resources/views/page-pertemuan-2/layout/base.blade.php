@@ -54,9 +54,9 @@
 <body>
     <div class="bg-white grid grid-cols-10 text-white h-screen">
         @include('page-pertemuan-2.components.sidebar')
-        <div class="col-span-8 flex flex-col text-black h-screen overflow-hidden">
+        <div class="col-span-8 flex flex-col text-black h-screen ">
             @include('page-pertemuan-2.components.navbar')
-            <div class="px-10 flex-1 overflow-x-auto">
+            <div class="px-10 flex-1 overflow-x-auto overflow-y-hidden">
                 @yield('content')
             </div>
             @include('page-pertemuan-2.components.footer')

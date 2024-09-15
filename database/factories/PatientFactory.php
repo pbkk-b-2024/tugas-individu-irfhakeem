@@ -18,7 +18,7 @@ class PatientFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'nik' => fake()->unique()->randomNumber(8),
+            'nik' => fake()->unique()->randomNumber(8, true),
             'tanggal_lahir' => fake()->date(),
             'email' => fake()->unique()->safeEmail(),
             'no_hp' => $this->generatePhoneNumber(),
