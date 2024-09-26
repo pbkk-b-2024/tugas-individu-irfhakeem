@@ -12,6 +12,7 @@ use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 
 // Welcome page
@@ -129,4 +130,8 @@ Route::prefix('/sections')->group(function () {
     Route::post('/appointment/add', [AppointmentController::class, 'add'])->name('appointment.add');
     Route::get('/appointment/edit/{id}', [AppointmentController::class, 'edit'])->name('appointment.edit');
     Route::put('/appointment/{id}', [AppointmentController::class, 'update'])->name('appointment.update');
+});
+
+Route::get('/api/docs', function () {
+    return redirect('/api/documentation');
 });

@@ -17,19 +17,19 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // Patient API
-Route::middleware(['auth:sanctum', 'can:add patient'])->group(function () {
-    Route::get('/patient', [PatientController::class, 'get']);
-    Route::delete('/patient/delete/{id}', [PatientController::class, 'delete']);
-    Route::post('/patient/add', [PatientController::class, 'add']);
-    Route::get('/patient/edit/{id}', [PatientController::class, 'edit']);
-    Route::put('/patient/{id}', [PatientController::class, 'update']);
-});
+// Route::middleware(['auth:sanctum', 'can:add patient'])->group(function () {
+//     Route::get('/patient', [PatientController::class, 'get']);
+//     Route::delete('/patient/delete/{id}', [PatientController::class, 'delete']);
+//     Route::post('/patient/add', [PatientController::class, 'add']);
+//     Route::get('/patient/edit/{id}', [PatientController::class, 'edit']);
+//     Route::put('/patient/{id}', [PatientController::class, 'update']);
+// });
 
-// Route::get('/patient', [PatientController::class, 'getPatient']);
-// Route::get('/patient/{id}', [PatientController::class, 'getPatientById']);
-// Route::post('/add-patient', [PatientController::class, 'addPatient']);
-// Route::delete('/delete-patient/{id}', [PatientController::class, 'deletePatient']);
-// Route::put('/update-patient/{id}', [PatientController::class, 'updatePatient']);
+Route::get('/patient', [PatientController::class, 'getPatient']);
+Route::get('/patient/{id}', [PatientController::class, 'getPatientById']);
+Route::post('/add-patient', [PatientController::class, 'addPatient']);
+Route::delete('/delete-patient/{id}', [PatientController::class, 'deletePatient']);
+Route::put('/update-patient/{id}', [PatientController::class, 'updatePatient']);
 
 // Doctor API
 Route::get('/doctor', [DoctorController::class, 'getDoctor']);
