@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddServiceRequest;
+use App\Http\Requests\UpdateServiceRequest;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\Schema;
@@ -71,29 +72,5 @@ class ServiceController extends Controller
     }
 
     // API
-    function getService()
-    {
-        $services = Service::all()->makeHidden(['created_at', 'updated_at']);
-        return response()->json($services);
-    }
 
-    function getServiceById($id)
-    {
-        $service = Service::where("service_id", $id)->first()->makeHidden(['created_at', 'updated_at']);
-        return response()->json($service);
-    }
-
-    function addService(AddServiceRequest $request)
-    {
-        $inputSpecialization = strtolower($request->nama);
-
-        $specialistExist = Service::whereRaw('LOWER(nama) = ?', [$inputSpecialization])->first();
-
-        if ($specialistExist) {
-            return response()->json(['message' => 'Service already exists.'], 400);
-        }
-
-        $service = Service::create($request->validated());
-        return response()->json($service);
-    }
 }

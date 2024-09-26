@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::middleware(['auth'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum'])->get('/dashboard', function () {
     if (Auth::user()->hasRole('admin')) {
         return redirect()->route('dashboard');
     } else if (Auth::user()->hasRole('patient')) {
@@ -37,20 +37,20 @@ Route::fallback(function () {
 // Pertemuan 2
 Route::prefix('/sections')->group(function () {
     // admin Dashboard
-    Route::middleware(['auth', 'can:view admin dashboard'])->get('/dashboard', [DashboardController::class, 'statistics'])->name('dashboard');
+    Route::middleware(['auth:sanctum', 'can:view admin dashboard'])->get('/dashboard', [DashboardController::class, 'statistics'])->name('dashboard');
     // patient Dashboard
-    Route::middleware(['auth', 'can:view patient dashboard'])->get('/dashboard-patient', [DashboardController::class, 'getStatisticPatient'])->name('dashboardPatient');
+    Route::middleware(['auth:sanctum', 'can:view patient dashboard'])->get('/dashboard-patient', [DashboardController::class, 'getStatisticPatient'])->name('dashboardPatient');
     // doctor Dashboard
-    Route::middleware(['auth', 'can:view doctor dashboard'])->get('/dashboard-doctor', [DashboardController::class, 'getStatisticDoctor'])->name('dashboardDoctor');
+    Route::middleware(['auth:sanctum', 'can:view doctor dashboard'])->get('/dashboard-doctor', [DashboardController::class, 'getStatisticDoctor'])->name('dashboardDoctor');
 
     // Patient Only Pages
-    Route::middleware(['auth', 'can:view patient dashboard'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:view patient dashboard'])->group(function () {
         Route::get('/medical-reports-patient', [PatientController::class, 'getMyMedicalReports'])->name('medicalReportsPatient');
         Route::get('/appointments-patient', [PatientController::class, 'getMyAppointments'])->name('appointmentsPatient');
         Route::get('/prescription-patient', [PatientController::class, 'getMyPrescription'])->name('prescriptionPatient');
     });
 
-    Route::middleware(['auth', 'can:add patients'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add patients'])->group(function () {
         Route::get('/patient', [PatientController::class, 'get'])->name('pasien');
         Route::delete('/patient/delete/{id}', [PatientController::class, 'delete'])->name('pasien.delete');
         Route::post('/patient/add', [PatientController::class, 'add'])->name('pasien.add');
@@ -60,7 +60,7 @@ Route::prefix('/sections')->group(function () {
 
     // Admin Only Pages
     // Doctor
-    Route::middleware(['auth', 'can:add doctors'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add doctors'])->group(function () {
         Route::get('/doctor', [DoctorController::class, 'get'])->name('doctor');
         Route::delete('/doctor/delete/{id}', [DoctorController::class, 'delete'])->name('doctor.delete');
         Route::post('doctor/add', [DoctorController::class, 'add'])->name('doctor.add');
@@ -69,7 +69,7 @@ Route::prefix('/sections')->group(function () {
     });
 
     // Health Center
-    Route::middleware(['auth', 'can:add health centers'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add health centers'])->group(function () {
         Route::get('/health-center', [HealthCenterController::class, 'get'])->name('healthCenter');
         Route::delete('/health-center/delete/{id}', [HealthCenterController::class, 'delete'])->name('healthCenter.delete');
         Route::post('/health-center/add', [HealthCenterController::class, 'add'])->name('healthCenter.add');
@@ -78,7 +78,7 @@ Route::prefix('/sections')->group(function () {
     });
 
     //Services
-    Route::middleware(['auth', 'can:add services'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add services'])->group(function () {
         Route::get('/service', [ServiceController::class, 'get'])->name('service');
         Route::delete('/service/delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
         Route::post('/service/add', [ServiceController::class, 'add'])->name('service.add');
@@ -87,7 +87,7 @@ Route::prefix('/sections')->group(function () {
     });
 
     // Drugs
-    Route::middleware(['auth', 'can:add drugs'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add drugs'])->group(function () {
         Route::get('/drug', [DrugController::class, 'get'])->name('drug');
         Route::delete('/drug/delete/{id}', [DrugController::class, 'delete'])->name('drug.delete');
         Route::post('/drug/add', [DrugController::class, 'add'])->name('drug.add');
@@ -96,7 +96,7 @@ Route::prefix('/sections')->group(function () {
     });
 
     // Specialization
-    Route::middleware(['auth', 'can:add specializations'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add specializations'])->group(function () {
         Route::get('/specialization', [SpecializationController::class, 'get'])->name('specialization');
         Route::delete('/specialization/delete/{id}', [SpecializationController::class, 'delete'])->name('specialization.delete');
         Route::post('/specialization/add', [SpecializationController::class, 'add'])->name('specialization.add');
@@ -106,7 +106,7 @@ Route::prefix('/sections')->group(function () {
 
     // Doctor Only Pages
     // Prescription
-    Route::middleware(['auth', 'can:add prescriptions'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add prescriptions'])->group(function () {
         Route::get('/prescription', [PrescriptionController::class, 'get'])->name('prescription');
         Route::delete('/prescription/delete/{id}', [PrescriptionController::class, 'delete'])->name('prescription.delete');
         Route::post('/prescription/add', [PrescriptionController::class, 'add'])->name('prescription.add');
@@ -115,7 +115,7 @@ Route::prefix('/sections')->group(function () {
     });
 
     // Medical Report
-    Route::middleware(['auth', 'can:add medical reports'])->group(function () {
+    Route::middleware(['auth:sanctum', 'can:add medical reports'])->group(function () {
         Route::get('/medicalReport', [MedicalReportController::class, 'get'])->name('medicalReport');
         Route::delete('/medicalReport/delete/{id}', [MedicalReportController::class, 'delete'])->name('medicalReport.delete');
         Route::post('/medicalReport/add', [MedicalReportController::class, 'add'])->name('medicalReport.add');
