@@ -162,10 +162,9 @@ class PatientController extends Controller
     }
 
     // Get patient by id
-    public function getPatientById(UserGetByIdRequest $request)
+    public function getPatientById($id)
     {
-        $patient_id = $request->validated()['patient_id'];
-        $patient = Patient::where('patient_id', $patient_id)->first();
+        $patient = Patient::where('patient_id', $id)->first()->makeHidden(['created_at', 'updated_at']);
 
         if ($patient) {
             return response()->json($patient);
@@ -203,10 +202,9 @@ class PatientController extends Controller
         ], 400);
     }
 
-    function deletePatient(DeletePatientRequest $request)
+    function deletePatient($id)
     {
-        $patient_id = $request->validated()['patient_id'];
-        $patient = Patient::find($patient_id);
+        $patient = Patient::where("patient_id", $id);
 
         if ($patient) {
             $patient->delete();
@@ -220,17 +218,15 @@ class PatientController extends Controller
         ], 400);
     }
 
-    public function updatePatient(UpdatePatientRequest $request)
+    public function updatePatient(UpdatePatientRequest $request, $id)
     {
         $validatedData = $request->validated();
-        $patient_id = $validatedData['patient_id'];
-        $patient = Patient::find($patient_id);
+        $patient = Patient::where("patient_id", $id)->first();
 
         if ($patient) {
             $patient->update($validatedData);
             return response()->json([
                 'message' => 'Patient updated successfully',
-                'data' => $patient
             ], 200);
         }
 

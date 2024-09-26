@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddSpecializationRequest;
+use App\Http\Requests\GetSpecializationByIdRequest;
 use App\Http\Requests\UpdateSpecializationRequest;
 use Illuminate\Http\Request;
 use App\Models\Specialization;
@@ -74,6 +75,17 @@ class SpecializationController extends Controller
         return response()->json($specializations);
     }
 
+    function getSpecializationById($id)
+    {
+        $specialization = Specialization::where("spesialis_id", $id)->first()->makeHidden(['created_at', 'updated_at']);
+
+        if (!$specialization) {
+            return response()->json(['message' => 'Specialization not found.'], 404);
+        }
+
+        return response()->json($specialization);
+    }
+
     function addSpecialization(AddSpecializationRequest $request)
     {
         $inputSpecialization = strtolower($request->spesialisasi);
@@ -88,13 +100,13 @@ class SpecializationController extends Controller
         return response()->json(['message' => 'Specialization added successfully.']);
     }
 
-    function updateSpecialization(UpdateSpecializationRequest $request)
+    function updateSpecialization(UpdateSpecializationRequest $request, $spesialis_id)
     {
         $inputSpecialization = strtolower($request->spesialisasi);
 
         // Cek apakah spesialisasi sudah ada
         $specialistExist = Specialization::whereRaw('LOWER(spesialisasi) = ?', [$inputSpecialization])
-            ->where('spesialis_id', '!=', $request->spesialis_id) // Mengecek selain id yang sedang di-update
+            ->where('spesialis_id', '!=', $spesialis_id) // Mengecek selain id yang sedang di-update
             ->first();
 
         if ($specialistExist) {
@@ -102,7 +114,7 @@ class SpecializationController extends Controller
         }
 
         // Cari spesialisasi yang akan di-update
-        $specialization = Specialization::find($request->spesialis_id);
+        $specialization = Specialization::find($spesialis_id);
 
         if (!$specialization) {
             return response()->json(['message' => 'Specialization not found.'], 404);
@@ -118,20 +130,16 @@ class SpecializationController extends Controller
 
     public function deleteSpecialization($id)
     {
-        // Cek apakah spesialisasi dengan ID tersebut ada
         $specialization = Specialization::find($id);
 
         if (!$specialization) {
-            // Jika spesialisasi tidak ditemukan, return pesan error
             return response()->json([
                 'message' => 'Specialization not found'
             ], 404);
         }
 
-        // Hapus spesialisasi
         $specialization->delete();
 
-        // Return response berhasil
         return response()->json([
             'message' => 'Specialization deleted successfully'
         ], 200);

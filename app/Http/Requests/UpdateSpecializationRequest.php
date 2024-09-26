@@ -24,7 +24,6 @@ class UpdateSpecializationRequest extends FormRequest
     {
         return [
             //
-            'spesialis_id' => ["required", "exists:specializations,spesialis_id"],
             'spesialisasi' => ["required", "string"],
         ];
     }

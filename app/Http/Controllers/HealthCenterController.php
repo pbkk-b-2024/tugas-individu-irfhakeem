@@ -121,9 +121,9 @@ class HealthCenterController extends Controller
         return response()->json($healthCenters);
     }
 
-    function getHealthCenterById(GetHealthCenterByIdRequest $request)
+    function getHealthCenterById($id)
     {
-        $healthCenter = HealthCenter::find($request->health_center_id);
+        $healthCenter = HealthCenter::where("health_center_id", $id)->first();
         $healthCenter->services = HealthCenterService::where('health_center_id', $healthCenter->health_center_id)->pluck('service_id')->toArray();
 
         if ($healthCenter) {
@@ -154,9 +154,9 @@ class HealthCenterController extends Controller
         ]);
     }
 
-    function deleteHealthCenter(GetHealthCenterByIdRequest $request)
+    function deleteHealthCenter($id)
     {
-        $healthCenter = HealthCenter::find($request->health_center_id);
+        $healthCenter = HealthCenter::where('health_center_id', $id)->first();
 
         if ($healthCenter) {
             $healthCenter->delete();
@@ -170,9 +170,9 @@ class HealthCenterController extends Controller
         ], 400);
     }
 
-    function updateHealthCenter(UpdateHealthCenterRequest $request)
+    function updateHealthCenter(UpdateHealthCenterRequest $request, $id)
     {
-        $healthCenter = HealthCenter::find($request->health_center_id);
+        $healthCenter = HealthCenter::where("health_center_id", $id)->first();
 
         if ($healthCenter) {
             $healthCenter->update($request->only('nama', 'alamat', 'no_telp', 'email'));

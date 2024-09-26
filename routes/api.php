@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HealthCenterController;
 use App\Http\Controllers\SpecializationController;
+use App\Http\Controllers\ServiceController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -13,10 +14,10 @@ Route::get('/user', function (Request $request) {
 
 // Patient API
 Route::get('/patient', [PatientController::class, 'getPatient']);
-Route::post('/search-patient-id', [PatientController::class, 'getPatientById']);
+Route::get('/patient/{id}', [PatientController::class, 'getPatientById']);
 Route::post('/add-patient', [PatientController::class, 'addPatient']);
-Route::post('/delete-patient', [PatientController::class, 'deletePatient']);
-Route::post('/update-patient', [PatientController::class, 'updatePatient']);
+Route::delete('/delete-patient/{id}', [PatientController::class, 'deletePatient']);
+Route::put('/update-patient/{id}', [PatientController::class, 'updatePatient']);
 
 // Doctor API
 Route::get('/doctor', [DoctorController::class, 'getDoctor']);
@@ -28,11 +29,19 @@ Route::post("/add-doctor", [DoctorController::class, 'addDoctor']);
 Route::get('/health-center', [HealthCenterController::class, 'getHealthCenter']);
 Route::post('/search-health-center-id', [HealthCenterController::class, 'getHealthCenterById']);
 Route::post('/add-health-center', [HealthCenterController::class, 'addHealthCenter']);
-Route::post('/delete-health-center', [HealthCenterController::class, 'deleteHealthCenter']);
-Route::post('/update-health-center', [HealthCenterController::class, 'updateHealthCenter']);
+Route::put('/update-health-center/{id}', [HealthCenterController::class, 'updateHealthCenter']);
+Route::delete('/delete-health-center/{id}', [HealthCenterController::class, 'deleteHealthCenter']);
 
 // Specialization API
 Route::get('/specialization', [SpecializationController::class, 'getSpecialization']);
+Route::post('/search-specialization-id', [SpecializationController::class, 'getSpecializationById']);
 Route::post('/add-specialization', [SpecializationController::class, 'addSpecialization']);
-Route::post('/update-specialization', [SpecializationController::class, 'updateSpecialization']);
+Route::put('/update-specialization/{id}', [SpecializationController::class, 'updateSpecialization']);
 Route::delete('/delete-specialization/{id}', [SpecializationController::class, 'deleteSpecialization']);
+
+// Service API
+Route::get('/service', [ServiceController::class, 'getService']);
+Route::get('/service/{id}', [ServiceController::class, 'getServiceById']);
+Route::post('/add-service', [ServiceController::class, 'addService']);
+// Route::put('/update-service/{id}', [ServiceController::class, 'updateService']);
+// Route::delete('/delete-service/{id}', [ServiceController::class, 'deleteService']);
