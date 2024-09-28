@@ -715,7 +715,7 @@
                 }
             }
         },
-        "/api/patient/26": {
+        "/api/patient/25": {
             "get": {
                 "tags": ["Patient"],
                 "summary": "search-patient-id",
@@ -882,7 +882,7 @@
                 }
             }
         },
-        "/api/update-patient/65": {
+        "/api/update-patient/52": {
             "put": {
                 "tags": ["Patient"],
                 "summary": "update-patient",
@@ -892,11 +892,11 @@
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "name": "John Doe",
+                                    "name": "John Joko",
                                     "tanggal_lahir": "1990-01-01",
-                                    "email": "johndoe1@example.com",
+                                    "email": "johnjoko@example.com",
                                     "no_hp": "08123456789",
-                                    "Golongan_darah": "AB",
+                                    "Golongan_darah": "B",
                                     "jenis_kelamin": "L"
                                 }
                             }
@@ -964,7 +964,7 @@
                 }
             }
         },
-        "/api/delete-patient/65": {
+        "/api/delete-patient/52": {
             "delete": {
                 "tags": ["Patient"],
                 "summary": "delete-patient",
@@ -1392,7 +1392,7 @@
                 }
             }
         },
-        "/api/search-doctor-id/2": {
+        "/api/search-doctor-id/10": {
             "get": {
                 "tags": ["Doctor"],
                 "summary": "get by id",
@@ -1564,7 +1564,7 @@
                 }
             }
         },
-        "/api/update-doctor/25": {
+        "/api/update-doctor/21": {
             "put": {
                 "tags": ["Doctor"],
                 "summary": "update-doctor",
@@ -1574,14 +1574,14 @@
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "sip": 123456799,
-                                    "nama": "John Doe, S.Pkk",
+                                    "sip": 123456789,
+                                    "nama": "John Doe",
                                     "email": "drjohndoe@example.com",
                                     "no_hp": "08123121453",
                                     "jenis_kelamin": "L",
-                                    "tanggal_lahir": "2004-01-09",
-                                    "spesialis_id": 9,
-                                    "health_center_id": 1
+                                    "tanggal_lahir": "2001-01-09",
+                                    "spesialis_id": 6,
+                                    "health_center_id": 5
                                 }
                             }
                         }
@@ -1648,10 +1648,10 @@
                 }
             }
         },
-        "/api/delete-doctor/25": {
+        "/api/delete-doctor/21": {
             "delete": {
                 "tags": ["Doctor"],
-                "summary": "New Request",
+                "summary": "delete",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1885,22 +1885,10 @@
                 }
             }
         },
-        "/api/search-health-center-id": {
-            "post": {
+        "/api/search-health-center-id/2": {
+            "get": {
                 "tags": ["Health Center"],
                 "summary": "search-health-center-id",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "example": {
-                                    "health_center_id": 1
-                                }
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1979,10 +1967,11 @@
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "nama": "RS Mitra Keluarga Surabaya",
-                                    "alamat": "Perumahan Galaxy Permai",
-                                    "email": "mitrakeluarga@sby.com",
-                                    "no_telp": "08878721982",
+                                    "name": "RS Mitra Keluarga Surabaya",
+                                    "address": "Perumahan Galaxy Permai",
+                                    "province": "Jawa Timur",
+                                    "region": "KOTA LHOKSEUMAWE, SURABAYA",
+                                    "phone": "08878721982",
                                     "service_id": [2, 3, 5, 6, 7]
                                 }
                             }
@@ -2042,17 +2031,7 @@
                                     "type": "object"
                                 },
                                 "example": {
-                                    "message": "Health Center and services added successfully.",
-                                    "data": {
-                                        "nama": "RS Mitra Keluarga Surabaya",
-                                        "alamat": "Perumahan Galaxy Permai",
-                                        "no_telp": "08878721982",
-                                        "email": "mitrakeluarga@sby.com",
-                                        "updated_at": "2024-09-26T03:58:40.000000Z",
-                                        "created_at": "2024-09-26T03:58:40.000000Z",
-                                        "health_center_id": 14,
-                                        "services": [2, 3, 5, 6, 7]
-                                    }
+                                    "message": "Health Center and services added successfully."
                                 }
                             }
                         }
@@ -2060,7 +2039,7 @@
                 }
             }
         },
-        "/api/update-health-center/15": {
+        "/api/update-health-center/134": {
             "put": {
                 "tags": ["Health Center"],
                 "summary": "update-health-center",
@@ -2070,11 +2049,12 @@
                             "schema": {
                                 "type": "object",
                                 "example": {
-                                    "nama": "RS Mitra Keluarga Pocan",
-                                    "alamat": "Pondok Candra",
-                                    "email": "mitrakeluargapocan@sby.com",
-                                    "no_telp": "08878721982",
-                                    "service_id": [2, 4, 6, 8, 9, 10]
+                                    "name": "RS Mitra Keluarga Surabaya",
+                                    "address": "Jl. Keputih",
+                                    "province": "Jawa Timur",
+                                    "region": "KOTA Surabaya, Jawa Timur",
+                                    "phone": "08878721982",
+                                    "service_id": [2, 1, 5, 6, 4]
                                 }
                             }
                         }
@@ -2141,7 +2121,7 @@
                 }
             }
         },
-        "/api/delete-health-center/15": {
+        "/api/delete-health-center/134": {
             "delete": {
                 "tags": ["Health Center"],
                 "summary": "delete-health-center",
@@ -2314,7 +2294,7 @@
                 }
             }
         },
-        "/api/service/1": {
+        "/api/service/3": {
             "get": {
                 "tags": ["Service"],
                 "summary": "getById",
@@ -2460,7 +2440,7 @@
                 }
             }
         },
-        "/api/update-service/13": {
+        "/api/update-service/12": {
             "put": {
                 "tags": ["Service"],
                 "summary": "update",
@@ -2537,7 +2517,7 @@
                 }
             }
         },
-        "/api/delete-service/13": {
+        "/api/delete-service/12": {
             "delete": {
                 "tags": ["Service"],
                 "summary": "delete",
@@ -2863,7 +2843,7 @@
                 }
             }
         },
-        "/api/update-specialization/22": {
+        "/api/update-specialization/21": {
             "put": {
                 "tags": ["Specialization"],
                 "summary": "update",
@@ -3309,7 +3289,7 @@
                 }
             }
         },
-        "/api/update-drug/17": {
+        "/api/update-drug/16": {
             "put": {
                 "tags": ["Drug"],
                 "summary": "update",
@@ -3417,8 +3397,8 @@
                                 "example": {
                                     "judul": "Pemeriksaan Umum",
                                     "patient_id": 26,
-                                    "dokter": "John Doe, S.Pkk",
-                                    "faskes": "PT Iswahyudi",
+                                    "dokter": "Hamima Aryani",
+                                    "faskes": "RS UMUM DAERAH CUT MEUTIA KAB. ACEH UTARA",
                                     "service": "Checkup",
                                     "diagnosis": "Flu Berat",
                                     "date": "2024-09-25",
@@ -3489,7 +3469,7 @@
                 }
             }
         },
-        "/api/update-medical-report/39": {
+        "/api/update-medical-report/31": {
             "put": {
                 "tags": ["Medical Report"],
                 "summary": "update",
@@ -3500,13 +3480,13 @@
                                 "type": "object",
                                 "example": {
                                     "judul": "Pemeriksaan Umum",
-                                    "patient_id": 26,
-                                    "dokter": "John Doe, S.Pkk",
-                                    "faskes": "PT Iswahyudi",
+                                    "patient_id": 30,
+                                    "dokter": "Asirwanda Suryono",
+                                    "faskes": "RS UMUM DAERAH CUT MEUTIA KAB. ACEH UTARA",
                                     "service": "Checkup",
-                                    "diagnosis": "Flu Berat, Pusing, dan Diare",
+                                    "diagnosis": "Flu Berat",
                                     "date": "2024-09-25",
-                                    "status": "Belum Selesai"
+                                    "status": "Selesai"
                                 }
                             }
                         }
@@ -3573,7 +3553,7 @@
                 }
             }
         },
-        "/api/delete-medical-report/39": {
+        "/api/delete-medical-report/31": {
             "delete": {
                 "tags": ["Medical Report"],
                 "summary": "delete",
@@ -4488,7 +4468,7 @@
                                 "example": {
                                     "penyakit": "Demam",
                                     "instruksi": "minum 3x sehari setelah makan",
-                                    "dokter": "John Doe, S.Pkk",
+                                    "dokter": "Asirwanda Suryono",
                                     "date": "2024-09-11",
                                     "patient_id": 26,
                                     "drug_id": [2, 3, 6, 1]
@@ -4563,7 +4543,7 @@
                 }
             }
         },
-        "/api/update-prescription/32": {
+        "/api/update-prescription/26": {
             "put": {
                 "tags": ["Prescription"],
                 "summary": "update",
@@ -4575,7 +4555,7 @@
                                 "example": {
                                     "penyakit": "Demam",
                                     "instruksi": "minum 3x sehari setelah makan",
-                                    "dokter": "John Doe, S.Pkk",
+                                    "dokter": "Hamima Aryani",
                                     "date": "2024-09-11",
                                     "patient_id": 23,
                                     "drug_id": [2, 3]
@@ -4650,7 +4630,7 @@
                 }
             }
         },
-        "/api/delete-prescription/32": {
+        "/api/delete-prescription/26": {
             "delete": {
                 "tags": ["Prescription"],
                 "summary": "delete",
@@ -5068,7 +5048,7 @@
                 }
             }
         },
-        "/api/update-appointment/20": {
+        "/api/update-appointment/16": {
             "put": {
                 "tags": ["Appointment"],
                 "summary": "update",
@@ -5150,7 +5130,7 @@
                 }
             }
         },
-        "/api/delete-appointment/20": {
+        "/api/delete-appointment/16": {
             "delete": {
                 "tags": ["Appointment"],
                 "summary": "delete",
