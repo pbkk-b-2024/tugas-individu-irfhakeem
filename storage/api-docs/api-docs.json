@@ -715,10 +715,21 @@
                 }
             }
         },
-        "/api/patient/25": {
+        "/api/patient/{id}": {
             "get": {
                 "tags": ["Patient"],
                 "summary": "search-patient-id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -882,10 +893,21 @@
                 }
             }
         },
-        "/api/update-patient/52": {
+        "/api/update-patient/{id}": {
             "put": {
                 "tags": ["Patient"],
                 "summary": "update-patient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -964,10 +986,21 @@
                 }
             }
         },
-        "/api/delete-patient/52": {
+        "/api/delete-patient/{id}": {
             "delete": {
                 "tags": ["Patient"],
                 "summary": "delete-patient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1392,10 +1425,21 @@
                 }
             }
         },
-        "/api/search-doctor-id/10": {
+        "/api/search-doctor-id/{id}": {
             "get": {
                 "tags": ["Doctor"],
                 "summary": "get by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1564,10 +1608,21 @@
                 }
             }
         },
-        "/api/update-doctor/21": {
+        "/api/update-doctor/{id}": {
             "put": {
                 "tags": ["Doctor"],
                 "summary": "update-doctor",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1648,10 +1703,21 @@
                 }
             }
         },
-        "/api/delete-doctor/21": {
+        "/api/delete-doctor/{id}": {
             "delete": {
                 "tags": ["Doctor"],
                 "summary": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1885,10 +1951,21 @@
                 }
             }
         },
-        "/api/search-health-center-id/2": {
+        "/api/search-health-center-id/{id}": {
             "get": {
                 "tags": ["Health Center"],
                 "summary": "search-health-center-id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -2039,10 +2116,21 @@
                 }
             }
         },
-        "/api/update-health-center/134": {
+        "/api/update-health-center/{id}": {
             "put": {
                 "tags": ["Health Center"],
                 "summary": "update-health-center",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2121,10 +2209,21 @@
                 }
             }
         },
-        "/api/delete-health-center/134": {
+        "/api/delete-health-center/{id}": {
             "delete": {
                 "tags": ["Health Center"],
                 "summary": "delete-health-center",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -2294,10 +2393,21 @@
                 }
             }
         },
-        "/api/service/3": {
+        "/api/service/{id}": {
             "get": {
                 "tags": ["Service"],
                 "summary": "getById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -2440,10 +2550,21 @@
                 }
             }
         },
-        "/api/update-service/12": {
+        "/api/update-service/{id}": {
             "put": {
                 "tags": ["Service"],
                 "summary": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2517,10 +2638,21 @@
                 }
             }
         },
-        "/api/delete-service/12": {
+        "/api/delete-service/{id}": {
             "delete": {
                 "tags": ["Service"],
                 "summary": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -2843,10 +2975,21 @@
                 }
             }
         },
-        "/api/update-specialization/21": {
+        "/api/update-specialization/{id}": {
             "put": {
                 "tags": ["Specialization"],
                 "summary": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -2920,10 +3063,21 @@
                 }
             }
         },
-        "/api/delete-specialization/21": {
+        "/api/delete-specialization/{id}": {
             "delete": {
                 "tags": ["Specialization"],
                 "summary": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -3139,10 +3293,21 @@
                 }
             }
         },
-        "/api/drug/5": {
+        "/api/drug/{id}": {
             "get": {
                 "tags": ["Drug"],
                 "summary": "getDrugId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -3289,10 +3454,21 @@
                 }
             }
         },
-        "/api/update-drug/16": {
+        "/api/update-drug/{id}": {
             "put": {
                 "tags": ["Drug"],
                 "summary": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3371,10 +3547,21 @@
                 }
             }
         },
-        "/api/delete-drug/17": {
+        "/api/delete-drug/{id}": {
             "delete": {
                 "tags": ["Drug"],
                 "summary": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful response",
@@ -3469,10 +3656,21 @@
                 }
             }
         },
-        "/api/update-medical-report/31": {
+        "/api/update-medical-report/{id}": {
             "put": {
                 "tags": ["Medical Report"],
                 "summary": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -3553,10 +3751,21 @@
                 }
             }
         },
-        "/api/delete-medical-report/31": {
+        "/api/delete-medical-report/{id}": {
             "delete": {
                 "tags": ["Medical Report"],
                 "summary": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -4023,10 +4232,21 @@
                 }
             }
         },
-        "/api/medical-report/30": {
+        "/api/medical-report/{id}": {
             "get": {
                 "tags": ["Medical Report"],
                 "summary": "get medical report by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -4384,10 +4604,21 @@
                 }
             }
         },
-        "/api/prescription/10": {
+        "/api/prescription/{id}": {
             "get": {
                 "tags": ["Prescription"],
                 "summary": "get by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -4543,10 +4774,21 @@
                 }
             }
         },
-        "/api/update-prescription/26": {
+        "/api/update-prescription/{id}": {
             "put": {
                 "tags": ["Prescription"],
                 "summary": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -4630,10 +4872,21 @@
                 }
             }
         },
-        "/api/delete-prescription/26": {
+        "/api/delete-prescription/{id}": {
             "delete": {
                 "tags": ["Prescription"],
                 "summary": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -4885,10 +5138,21 @@
                 }
             }
         },
-        "/api/appointment/4": {
+        "/api/appointment/{id}": {
             "get": {
                 "tags": ["Appointment"],
                 "summary": "get by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -5048,10 +5312,21 @@
                 }
             }
         },
-        "/api/update-appointment/16": {
+        "/api/update-appointment/{id}": {
             "put": {
                 "tags": ["Appointment"],
                 "summary": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -5130,10 +5405,21 @@
                 }
             }
         },
-        "/api/delete-appointment/16": {
+        "/api/delete-appointment/{id}": {
             "delete": {
                 "tags": ["Appointment"],
                 "summary": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID of the patient to retrieve"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
