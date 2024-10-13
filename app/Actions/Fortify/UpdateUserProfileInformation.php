@@ -2,7 +2,9 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Doctor;
 use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -15,22 +17,38 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      *
      * @param  array<string, mixed>  $input
      */
-    public function update(User $user, array $input): void
+    public function update(\Illuminate\Foundation\Auth\User $user, array $input): void
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:2048'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
+            if ($user->hasRole("patient")) {
+                Patient::where('email', $user->email)->update([
+                    'email' => $input['email'],
+                    'name' => $input['name'],
+                ]);
+
+                // dd($patient);
+            } elseif ($user->hasRole("doctor")) {
+                Doctor::where('email', $user->email)->update([
+                    'email' => $input['email'],
+                    'name' => $input['name'],
+                ]);
+            }
+
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],

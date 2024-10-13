@@ -123,7 +123,7 @@
                         <select id="health_center_id" name="health_center_id" autocomplete="off" required
                             class="bg-white text-gray-500 text-sm focus:outline-none focus:ring-0 block w-full">
                             @foreach ($healthCenters as $healthCenter)
-                                <option value="{{ $healthCenter->health_center_id }}">{{ $healthCenter->nama }}
+                                <option value="{{ $healthCenter->health_center_id }}">{{ $healthCenter->name }}
                                 </option>
                             @endforeach
                         </select>

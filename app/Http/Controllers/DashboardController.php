@@ -33,7 +33,7 @@ class DashboardController extends Controller
     {
         $email = Auth::user()->email ?? null;
         $patient = Patient::where('email', $email)->first();
-        // dd($id);
+        // dd($patient);
         $medicalReports = MedicalReport::where('patient_id', $patient->patient_id)->count();
         $appointments = Appointment::where('patient_id', $patient->patient_id)->count();
         $prescriptions = Prescription::where('patient_id', $patient->patient_id)->count();

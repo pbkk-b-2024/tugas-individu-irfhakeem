@@ -39,12 +39,14 @@
                     ];
                 @endphp
 
-                @foreach ($details as $detail)
-                    <div class="mb-3">
-                        <p class="text-xs">{{ $detail['tag'] }} </p>
-                        <p class="font-medium" id="{{ $detail['id'] }}"></p>
-                    </div>
-                @endforeach
+                <div class="flex flex-col gap-3">
+                    @foreach ($details as $detail)
+                        <div>
+                            <p class="text-xs">{{ $detail['tag'] }} </p>
+                            <p class="font-medium" id="{{ $detail['id'] }}"></p>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

@@ -54,7 +54,7 @@
                         @foreach ($healthCenters as $healthCenter)
                             <option value="{{ $healthCenter->health_center_id }}"
                                 {{ $healthCenter->health_center_id == $appointment->health_center_id ? 'selected' : '' }}>
-                                {{ $healthCenter->nama }}
+                                {{ $healthCenter->name }}
                             </option>
                         @endforeach
                     </select>

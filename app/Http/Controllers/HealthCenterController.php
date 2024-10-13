@@ -82,16 +82,17 @@ class HealthCenterController extends Controller
     function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
-            'no_telp' => 'required',
-            'email' => 'required',
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'province' => 'required',
+            'region' => 'required',
             'service_id' => 'required|array',
             'service_id.*' => 'exists:services,service_id',
         ]);
 
         $healthCenter = HealthCenter::find($id);
-        $healthCenter->update($request->only('nama', 'alamat', 'no_telp', 'email'));
+        $healthCenter->update($request->only('name', 'address', 'phone', 'region', 'province'));
 
         $existingServices = HealthCenterService::where('health_center_id', $id)->pluck('service_id')->toArray();
 

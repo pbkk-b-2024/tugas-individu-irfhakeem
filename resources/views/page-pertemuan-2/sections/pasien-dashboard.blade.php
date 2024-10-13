@@ -10,8 +10,10 @@
     <div class="flex flex-col justify-between gap-28">
         {{-- Card Bio --}}
         <div class="flex gap-10 items-center">
-            <img src="https://matafoto.co/wp-content/uploads/2021/03/merah-min.jpg" alt=""
-                class="rounded-full w-28 h-28 object-cover">
+            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                <img class="h-28 w-28 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
+                    alt="{{ Auth::user()->name }}" />
+            @endif
             <div class="flex flex-col gap-3">
                 <p class="text-[#229799] font-semibold text-4xl">{{ $patient->name }}</p>
                 <div class="flex flex-col text-sm gap-1">

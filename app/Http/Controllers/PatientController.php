@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdatePatientRequest;
-use App\Http\Requests\UserGetByIdRequest;
-use App\Http\Requests\DeletePatientRequest;
 use App\Models\MedicalReport;
 use Illuminate\Http\Request;
 use App\Models\Patient;
@@ -117,6 +114,7 @@ class PatientController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->nik;
+        // $user->profile_photo_path = $request->avatar ?? 'default.jpg';
         $user->save();
 
         $user->assignRole('patient');
@@ -148,11 +146,8 @@ class PatientController extends Controller
         ]);
 
         $patient = Patient::find($id);
+        User::where('email', $patient->email)->update(['email' => $validate['email']]);
         $patient->update($validate);
         return redirect()->route('pasien')->with('success', 'Patient updated successfully.');
     }
-
-    // API
-
-    // Get all patients
 }
