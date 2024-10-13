@@ -38,6 +38,17 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #22979970;
         }
+
+        .active {
+            transform: rotate(81deg);
+            fill: #229799;
+            transition: ease-in-out 0.3s;
+
+        }
+
+        .nonactive {
+            transition: ease-in-out 0.3s;
+        }
     </style>
     <script>
         $(document).ready(function() {

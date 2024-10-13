@@ -33,7 +33,7 @@ class AppointmentController extends Controller
             $appointments = Appointment::where('patient_id', $patient->patient_id)->orderBy('date')->paginate(10);
             $doctors = Doctor::select('doctor_id', 'nama')->get();
             $services = Service::select('service_id', 'nama')->get();
-            $healthCenters = HealthCenter::select('health_center_id', 'nama')->get();
+            $healthCenters = HealthCenter::select('health_center_id', 'name')->get();
             return view('page-pertemuan-2.sections.appointment', compact('columns', 'appointments', 'doctors', 'healthCenters', 'services', 'patient'));
         } else {
             $appointments = Appointment::orderBy('date')->paginate(10);

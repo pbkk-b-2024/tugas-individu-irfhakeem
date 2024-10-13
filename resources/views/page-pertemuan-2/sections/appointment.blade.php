@@ -126,13 +126,13 @@
                                 @role('patient')
                                     @foreach ($healthCenters as $healthCenter)
                                         <option value="{{ $healthCenter->health_center_id }}">
-                                            {{ $healthCenter->nama }}
+                                            {{ $healthCenter->name }}
                                         </option>
                                     @endforeach
                                 @endrole
                                 @role('doctor')
                                     <option value="{{ $healthCenter->health_center_id }}">
-                                        {{ $healthCenter->nama }}
+                                        {{ $healthCenter->name }}
                                     </option>
                                 @endrole
                             </select>

@@ -37,8 +37,14 @@
             <x-section-border />
 
             <div class="flex justify-end">
-                <a class="px-4 py-2 bg-[#229799] hover:bg-[#317375] text-white rounded-lg"
-                    href="{{ route('dashboard') }}">Cancel</a>
+                @role('patient')
+                    <a class="px-4 py-2 bg-[#229799] hover:bg-[#317375] text-white rounded-lg"
+                        href="{{ route('dashboardPatient') }}">Cancel</a>
+                @endrole
+                @role('doctor')
+                    <a class="px-4 py-2 bg-[#229799] hover:bg-[#317375] text-white rounded-lg"
+                        href="{{ route('dashboardDoctor') }}">Cancel</a>
+                @endrole
             </div>
         </div>
 

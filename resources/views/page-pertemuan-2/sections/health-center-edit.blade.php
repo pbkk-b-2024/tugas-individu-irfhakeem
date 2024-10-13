@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class=" bg-white w-full">
+    <div class="mt-10 bg-white w-full">
         <form action="{{ route('healthCenter.update', $healthCenter->health_center_id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -17,12 +17,20 @@
                     Nama Fasilitas Kesehatan</label>
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="alamat" id="alamat"
+                <input type="text" name="address" id="address"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
-                    placeholder=" " value="{{ $healthCenter->alamat }}" required />
-                <label for="alamat"
+                    placeholder=" " value="{{ $healthCenter->address }}" required />
+                <label for="address"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[#229799]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Alamat Fasilitas Kesehatan</label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="text" name="province" id="province"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
+                    placeholder=" " value="{{ $healthCenter->province }}" required />
+                <label for="province"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[#229799]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    Province</label>
             </div>
             <div class="relative z-0 w-full mb-5 group">
                 <label for="service_id" class="block mb-2 text-sm text-gray-500">Service</label>
@@ -42,18 +50,18 @@
 
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="email" id="email"
+                    <input type="text" name="region" id="region"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
-                        placeholder=" " value="{{ $healthCenter->email }}" required />
-                    <label for="email"
+                        placeholder=" " value="{{ $healthCenter->region }}" required />
+                    <label for="region"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[#229799]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                        Email</label>
+                        Region</label>
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" pattern="^08[0-9]{8,13}$" name="no_telp" id="no_telp"
+                    <input type="text" pattern="^08[0-9]{8,13}$" name="phone" id="phone"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#229799] peer"
-                        placeholder=" " value="{{ $healthCenter->no_telp }}" required />
-                    <label for="no_telp"
+                        placeholder=" " value="{{ $healthCenter->phone }}" required />
+                    <label for="phone"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-[#229799]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Nomor Telephone</label>
                 </div>
